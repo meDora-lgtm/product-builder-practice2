@@ -57,7 +57,15 @@ const translations = {
     placeholder_message: "문의 내용을 입력해주세요",
     btn_send: "문의하기",
     comments_title: "댓글",
-    label_ads: "광고"
+    label_ads: "광고",
+    // 승인 최적화 문구
+    about_title: "프로젝트 소개",
+    about_desc: "이 프로젝트는 전 세계 대학교의 경쟁력과 학문적 성과를 탐색할 수 있도록 돕는 CWUR(Center for World University Rankings) 데이터를 기반으로 한 웹 도구입니다. 사용자들은 연도별 랭킹 변화를 확인하고, 국가별 필터링을 통해 본인이 관심 있는 교육 기관의 정보를 손쉽게 찾을 수 있습니다.",
+    policy_privacy: "개인정보처리방침",
+    policy_terms: "이용약관",
+    privacy_content: "본 사이트는 사용자의 개인정보를 수집하거나 저장하지 않습니다. 단, Google AdSense 및 Disqus와 같은 제3자 서비스를 통해 쿠키가 사용될 수 있으며, 이는 광고 개인화 및 댓글 서비스 제공을 목적으로 합니다.",
+    terms_content: "본 사이트에서 제공하는 데이터는 교육적 목적의 참고용입니다. 데이터의 정확성을 기하기 위해 노력하나, 실제 정보와 차이가 있을 수 있으므로 공식 기관의 자료를 최종 확인하시기 바랍니다.",
+    copyright: "© 2026 World Uni Explorer. All Rights Reserved."
   },
   en: {
     app_title: "World University Top 1000 Explorer",
@@ -114,7 +122,14 @@ const translations = {
     placeholder_message: "Enter your message",
     btn_send: "Send Message",
     comments_title: "Comments",
-    label_ads: "AD"
+    label_ads: "AD",
+    about_title: "About Project",
+    about_desc: "This project provides a comprehensive explorer for the Top 1000 World University Rankings based on CWUR data. It aims to help students, researchers, and educators analyze global academic trends and institutional performance across different years and countries.",
+    policy_privacy: "Privacy Policy",
+    policy_terms: "Terms of Service",
+    privacy_content: "We do not directly collect or store any personal user data. However, third-party services like Google AdSense and Disqus may use cookies for ad personalization and comment functionality.",
+    terms_content: "Data provided on this site is for educational and informational purposes only. While we strive for accuracy, please consult official institutional sources for definitive information.",
+    copyright: "© 2026 World Uni Explorer. All Rights Reserved."
   },
   ja: {
     app_title: "世界大学トップ1000エクスプローラー",
@@ -170,7 +185,15 @@ const translations = {
     placeholder_email: "メールアドレス",
     placeholder_message: "お問い合わせ内容を入力してください",
     btn_send: "送信する",
-    comments_title: "コメント"
+    comments_title: "コメント",
+    label_ads: "広告",
+    about_title: "プロジェクトについて",
+    about_desc: "このプロジェクトは、CWUR（Center for World University Rankings）のデータを活用し、世界中の大学の競争力や学術的成果を簡単に探索できるように設計されています。ユーザーは年度別の順位変動を確認し、国別のフィルタリングを通じて興味のある教育機関の情報を得ることができます。",
+    policy_privacy: "プライバシーポリシー",
+    policy_terms: "利用規約",
+    privacy_content: "当サイトはユーザーの個人情報を直接収集または保存しません。ただし、Google AdSenseやDisqusなどの第三者サービスを通じて、広告のパーソナライズやコメント機能提供のためにクッキーが使用される場合があります。",
+    terms_content: "当サイトで提供されるデータは教育目的の参照用です。正確性の確保に努めていますが、最新の公式情報を必ず確認してください。",
+    copyright: "© 2026 World Uni Explorer. All Rights Reserved."
   }
 };
 

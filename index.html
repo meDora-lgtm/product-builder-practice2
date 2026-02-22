@@ -4,7 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title data-i18n="app_title">World University Top 1000 Explorer</title>
-  <meta name="description" content="World University Rankings Top 1000" />
+  <meta name="description" content="Explore and analyze the World University Rankings Top 1000 with CWUR data. Filter by year, country, and academic performance." />
+  <meta name="keywords" content="University Ranking, World Ranking, Education, CWUR, Top 1000 Universities" />
+  <meta name="author" content="World Uni Explorer" />
+  <link rel="canonical" href="https://product-builder-practice2.vercel.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="World University Top 1000 Explorer" />
+  <meta property="og:description" content="Analyze top university rankings worldwide using interactive filters." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://product-builder-practice2.vercel.app/" />
 
   <!-- Pretendard -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
@@ -161,6 +170,18 @@
   
         <!-- Results Column -->
         <div style="display: flex; flex-direction: column; gap: 14px;">
+          <!-- About Project Panel -->
+          <section class="panel">
+            <div class="hd">
+              <strong data-i18n="about_title">프로젝트 소개</strong>
+            </div>
+            <div class="bd">
+              <p class="hint" data-i18n="about_desc" style="line-height: 1.6; margin-bottom: 0;">
+                이 프로젝트는 전 세계 대학교의 경쟁력과 학문적 성과를 탐색할 수 있도록 돕는 CWUR 데이터를 기반으로 한 웹 도구입니다.
+              </p>
+            </div>
+          </section>
+
           <!-- Advertisement Panel -->
           <section class="panel">
             <div class="hd">
@@ -242,6 +263,18 @@
         </div>
       </div>
 
+    <!-- Privacy & Terms Modal/Section -->
+    <div class="grid" style="margin-top: 14px;">
+      <section class="panel">
+        <div class="hd"><strong data-i18n="policy_privacy">개인정보처리방침</strong></div>
+        <div class="bd"><p class="hint" data-i18n="privacy_content" style="font-size: 12px;"></p></div>
+      </section>
+      <section class="panel">
+        <div class="hd"><strong data-i18n="policy_terms">이용약관</strong></div>
+        <div class="bd"><p class="hint" data-i18n="terms_content" style="font-size: 12px;"></p></div>
+      </section>
+    </div>
+
     <!-- Comments Section -->
     <section class="panel" style="margin-top: 14px;">
       <div class="hd">
@@ -269,6 +302,10 @@
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
       </div>
     </section>
+
+    <footer style="margin-top: 40px; padding: 20px; border-top: 1px solid var(--line); text-align: center;">
+      <p data-i18n="copyright" style="font-size: 13px; color: var(--muted2);"></p>
+    </footer>
   </div>
 
   <script src="main.js" defer></script>
