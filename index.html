@@ -1,14 +1,201 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title data-i18n="app_title">World University Top 1000 Explorer</title>
+  <meta name="description" content="World University Rankings Top 1000" />
+
+  <!-- Pretendard -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">UNI</div>
+        <div>
+          <h1 data-i18n="app_title">World University Top 1000 Explorer</h1>
+          <p data-i18n="app_desc">연도 선택 · 검색 · 국가 필터 · 정렬 · 페이지로 세계 대학교 상위 1000개를 조회합니다</p>
+        </div>
+      </div>
+
+      <div class="topActions">
+        <div class="control-group">
+          <select id="langSelect" class="select-sm" aria-label="Language">
+            <option value="ko">한국어</option>
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+          </select>
+          <button id="themeToggle" class="icon-btn" title="Toggle Theme">
+            <span id="themeIcon">🌙</span>
+          </button>
+        </div>
+        <div style="width: 1px; height: 24px; background: var(--line); margin: 0 4px;"></div>
+        <button class="btn" id="btnReload" title="Reload Data" data-i18n="btn_reload">데이터 새로고침</button>
+        <button class="btn" id="btnReset" title="Reset Filters" data-i18n="btn_reset">필터 초기화</button>
+        <button class="btn primary" id="btnApply" title="Apply Filters (Enter)" data-i18n="btn_apply">조회</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- Filters -->
+      <section class="panel">
+        <div class="hd">
+          <strong data-i18n="filter_title">조회 조건</strong>
+          <span style="color:var(--muted2); font-size:12px;">
+            <span data-i18n="shortcut_enter">단축키 Enter 조회</span> · <span class="kbd">/</span> <span data-i18n="shortcut_search">검색 포커스</span>
+          </span>
+        </div>
+        <div class="bd">
+          <p class="hint" data-i18n="data_notice">
+            공개 CSV 데이터를 불러와서 보여주는 데모 페이지입니다. (Top 1000 표시는 선택한 연도 기준)
+          </p>
+
+          <div class="field">
+            <div class="label">
+              <span data-i18n="label_search">검색</span>
+              <small data-i18n="label_search_hint">학교명/국가</small>
+            </div>
+            <input id="q" type="search" placeholder="Harvard / Korea / Tokyo..." autocomplete="off" />
+          </div>
+
+          <div class="row" style="margin-top:12px;">
+            <div class="field" style="flex:1; min-width: 180px;">
+              <div class="label">
+                <span data-i18n="label_year">연도</span>
+                <small data-i18n="label_year_hint">데이터 연도</small>
+              </div>
+              <select id="year"></select>
+            </div>
+
+            <div class="field" style="flex:1; min-width: 180px;">
+              <div class="label">
+                <span data-i18n="label_country">국가</span>
+                <small data-i18n="label_country_hint">선택</small>
+              </div>
+              <select id="country">
+                <option value="__ALL__" data-i18n="opt_all">전체</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:12px;">
+            <div class="field" style="flex:1; min-width: 180px;">
+              <div class="label">
+                <span data-i18n="label_sort">정렬</span>
+                <small data-i18n="label_sort_hint">기본: 세계랭킹</small>
+              </div>
+              <select id="sort">
+                <option value="rank_asc" data-i18n="sort_rank_asc">세계랭킹 ↑</option>
+                <option value="rank_desc" data-i18n="sort_rank_desc">세계랭킹 ↓</option>
+                <option value="score_desc" data-i18n="sort_score_desc">점수 ↓</option>
+                <option value="name_asc" data-i18n="sort_name_asc">학교명 A→Z</option>
+              </select>
+            </div>
+
+            <div class="field" style="flex:1; min-width: 180px;">
+              <div class="label">
+                <span data-i18n="label_page">페이지 당</span>
+                <small data-i18n="label_page_hint">표시 개수</small>
+              </div>
+              <select id="pageSize">
+                <option value="25">25</option>
+                <option value="50" selected>50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;">
+            <div class="label">
+              <span data-i18n="label_current">현재 조건</span>
+              <small data-i18n="label_current_hint">자동 요약</small>
+            </div>
+            <div class="chips" id="summaryChips"></div>
+          </div>
+
+          <div style="margin-top:14px;">
+            <div class="loading" id="sourceBox">
+              <div class="dot"></div>
+              <div>
+                <div style="color:var(--text); opacity:0.9; font-size:13px; font-weight:650;" data-i18n="msg_loading">데이터 불러오는 중…</div>
+                <div style="font-size:12px;" data-i18n="msg_wait">네트워크 상황에 따라 1~3초 걸릴 수 있어요</div>
+              </div>
+            </div>
+            <p class="hint" style="margin-top:10px;" data-i18n="source_credit">
+              데이터 출처: CWUR 공개 CSV
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results -->
+      <section class="panel">
+        <div class="hd">
+          <strong data-i18n="result_title">조회 결과</strong>
+          <span style="color:var(--muted2); font-size:12px;" id="resultTitle">Top 1000</span>
+        </div>
+
+        <div class="bd">
+          <div class="meta">
+            <div>
+              <span id="metaCount">-</span>
+              <span style="color:var(--muted2);" id="metaNote"></span>
+            </div>
+            <div class="row">
+              <span class="pill"><b id="metaYear">-</b> <span data-i18n="meta_year">Year</span></span>
+              <span class="pill"><b id="metaShown">-</b> <span data-i18n="meta_shown">Shown</span></span>
+              <span class="pill"><b id="metaTotal">-</b> <span data-i18n="meta_total">Total</span></span>
+            </div>
+          </div>
+
+          <div id="loadingArea" class="loading" style="display:none;">
+            <div class="dot"></div>
+            <div data-i18n="msg_rendering">테이블을 렌더링 중…</div>
+          </div>
+
+          <div style="overflow:auto; border-radius:14px; border:1px solid var(--line);">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:120px;" data-i18n="th_rank">세계랭킹</th>
+                  <th data-i18n="th_uni">대학교</th>
+                  <th style="width:220px;" data-i18n="th_country">국가</th>
+                  <th style="width:140px;" data-i18n="th_score">점수</th>
+                </tr>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+
+          <div id="empty" class="empty" style="display:none; margin-top:12px;" data-i18n="msg_empty">
+            조건에 맞는 결과가 없어요.
+          </div>
+
+          <div class="pager">
+            <div class="left">
+              <button class="btn" id="prev" data-i18n="btn_prev">이전</button>
+              <button class="btn" id="next" data-i18n="btn_next">다음</button>
+              <span><span data-i18n="page_label">페이지</span> <b id="pageNow">1</b> / <b id="pageMax">1</b></span>
+            </div>
+            <div class="right">
+              <span style="color:var(--muted2);"><span data-i18n="tip_prefix">Tip:</span> <span class="kbd">/</span> <span data-i18n="tip_suffix">로 검색창 포커스</span></span>
+            </div>
+          </div>
+
+          <footer data-i18n="footer_note">
+            * 이 페이지는 예시용이며, “최신 2025/2026 Top1000”을 쓰려면 별도 데이터 소스를 연결해야 합니다.
+          </footer>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="main.js" defer></script>
 </body>
 </html>
