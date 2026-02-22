@@ -55,7 +55,8 @@ const translations = {
     placeholder_name: "성함 / 기업명",
     placeholder_email: "이메일 주소",
     placeholder_message: "문의 내용을 입력해주세요",
-    btn_send: "문의하기"
+    btn_send: "문의하기",
+    comments_title: "댓글"
   },
   en: {
     app_title: "World University Top 1000 Explorer",
@@ -110,7 +111,8 @@ const translations = {
     placeholder_name: "Name / Company",
     placeholder_email: "Email Address",
     placeholder_message: "Enter your message",
-    btn_send: "Send Message"
+    btn_send: "Send Message",
+    comments_title: "Comments"
   },
   ja: {
     app_title: "世界大学トップ1000エクスプローラー",
@@ -165,7 +167,8 @@ const translations = {
     placeholder_name: "お名前 / 企業名",
     placeholder_email: "メールアドレス",
     placeholder_message: "お問い合わせ内容を入力してください",
-    btn_send: "送信する"
+    btn_send: "送信する",
+    comments_title: "コメント"
   }
 };
 
