@@ -131,6 +131,26 @@
               데이터 출처: CWUR 공개 CSV
             </p>
           </div>
+
+          <!-- Partnership Inquiry Form -->
+          <div style="margin-top:24px; padding-top:20px; border-top:1px dashed var(--line2);">
+            <div class="label">
+              <span data-i18n="label_partnership">제휴 문의</span>
+              <small data-i18n="label_partnership_hint">Formspree</small>
+            </div>
+            <form action="https://formspree.io/f/xgolnnna" method="POST" id="partnershipForm">
+              <div class="field" style="margin-bottom:8px;">
+                <input type="text" name="name" data-i18n="placeholder_name" placeholder="성함 / 기업명" required />
+              </div>
+              <div class="field" style="margin-bottom:8px;">
+                <input type="email" name="_replyto" data-i18n="placeholder_email" placeholder="이메일 주소" required />
+              </div>
+              <div class="field" style="margin-bottom:10px;">
+                <textarea name="message" data-i18n="placeholder_message" placeholder="문의 내용을 입력해주세요" required style="width:100%; min-height:80px; padding:11px 12px; border-radius:12px; border:1px solid var(--line); background:var(--input-bg); color:var(--text); font-size:14px; font-family:inherit; resize:vertical;"></textarea>
+              </div>
+              <button type="submit" class="btn primary" style="width:100%; border-radius:12px;" data-i18n="btn_send">문의하기</button>
+            </form>
+          </div>
         </div>
       </section>
 

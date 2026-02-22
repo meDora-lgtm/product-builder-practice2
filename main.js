@@ -49,7 +49,13 @@ const translations = {
     sort_name_asc: "학교명 A→Z",
     msg_data_ready: "데이터 준비 완료",
     msg_render: "테이블을 렌더링 중…",
-    national_rank: "국가 내 순위"
+    national_rank: "국가 내 순위",
+    label_partnership: "제휴 문의",
+    label_partnership_hint: "Formspree",
+    placeholder_name: "성함 / 기업명",
+    placeholder_email: "이메일 주소",
+    placeholder_message: "문의 내용을 입력해주세요",
+    btn_send: "문의하기"
   },
   en: {
     app_title: "World University Top 1000 Explorer",
@@ -98,22 +104,28 @@ const translations = {
     sort_name_asc: "Name A-Z",
     msg_data_ready: "Data Ready",
     msg_render: "Rendering table...",
-    national_rank: "National rank"
+    national_rank: "National rank",
+    label_partnership: "Partnership",
+    label_partnership_hint: "Formspree",
+    placeholder_name: "Name / Company",
+    placeholder_email: "Email Address",
+    placeholder_message: "Enter your message",
+    btn_send: "Send Message"
   },
   ja: {
     app_title: "世界大学トップ1000エクスプローラー",
     app_desc: "年度選択、検索、国フィルタ、ソート、ページングで世界大学トップ1000を照会します",
-    btn_reload: "データ更新",
-    btn_reset: "リセット",
+    btn_reload: "데이터更新",
+    btn_reset: "리셋",
     btn_apply: "適用",
     filter_title: "照会条件",
     shortcut_enter: "Enterで照회",
     shortcut_search: "検索フォーカス",
-    data_notice: "公開CSVデータを使用したデモページです。（トップ1000は選択年度基準）",
+    data_notice: "公開CSV데이터を使用した데모페이지입니다.（トップ1000は選択年度基準）",
     label_search: "検索",
     label_search_hint: "大学名/国名",
     label_year: "年度",
-    label_year_hint: "データ年度",
+    label_year_hint: "데이터年度",
     label_country: "国",
     label_country_hint: "選択",
     label_sort: "並び替え",
@@ -122,9 +134,9 @@ const translations = {
     label_page_hint: "1ページあたり",
     label_current: "現在の条件",
     label_current_hint: "自動要約",
-    msg_loading: "データを読み込み中...",
-    msg_wait: "ネットワーク状況により1〜3秒かかる場合があります",
-    source_credit: "データ出典: CWUR 公開 CSV",
+    msg_loading: "데이터を読み込み中...",
+    msg_wait: "네트워크状況により1〜3秒かかる場合があります",
+    source_credit: "데이터出典: CWUR 公開 CSV",
     result_title: "照会結果",
     meta_year: "年度",
     meta_shown: "表示中",
@@ -142,12 +154,18 @@ const translations = {
     footer_note: "* このページはデモ用です。最新の2025/2026データを使用するには別途ソースが必要です。",
     opt_all: "すべて",
     sort_rank_asc: "世界順位 ↑",
-    sort_rank_desc: "世界順位 ↓",
+    sort_rank_desc: "世界順위 ↓",
     sort_score_desc: "スコア ↓",
     sort_name_asc: "大学名 A→Z",
     msg_data_ready: "準備完了",
-    msg_render: "レンダ링中...",
-    national_rank: "国内順位"
+    msg_render: "렌다링中...",
+    national_rank: "国内順位",
+    label_partnership: "提携お問い合わせ",
+    label_partnership_hint: "Formspree",
+    placeholder_name: "お名前 / 企業名",
+    placeholder_email: "メールアドレス",
+    placeholder_message: "お問い合わせ内容を入力してください",
+    btn_send: "送信する"
   }
 };
 
@@ -158,7 +176,7 @@ function setLanguage(lang) {
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
     if (dict[key]) {
-      if (el.tagName === "INPUT") {
+      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
         el.placeholder = dict[key];
       } else {
         el.textContent = dict[key];
