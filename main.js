@@ -56,7 +56,8 @@ const translations = {
     placeholder_email: "이메일 주소",
     placeholder_message: "문의 내용을 입력해주세요",
     btn_send: "문의하기",
-    comments_title: "댓글"
+    comments_title: "댓글",
+    label_ads: "광고"
   },
   en: {
     app_title: "World University Top 1000 Explorer",
@@ -112,7 +113,8 @@ const translations = {
     placeholder_email: "Email Address",
     placeholder_message: "Enter your message",
     btn_send: "Send Message",
-    comments_title: "Comments"
+    comments_title: "Comments",
+    label_ads: "AD"
   },
   ja: {
     app_title: "世界大学トップ1000エクスプローラー",
