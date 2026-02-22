@@ -170,15 +170,23 @@
   
         <!-- Results Column -->
         <div style="display: flex; flex-direction: column; gap: 14px;">
-          <!-- About Project Panel -->
+          <!-- Podium / Hall of Fame -->
           <section class="panel">
             <div class="hd">
-              <strong data-i18n="about_title">세계 명문대 조회 및 학술 정보 가이드</strong>
+              <strong data-i18n="podium_title">TOP 3 명예의 전당</strong>
             </div>
             <div class="bd">
-              <p class="hint" data-i18n="about_desc" style="line-height: 1.6; margin-bottom: 0;">
-                본 플랫폼은 전 세계 유명 대학교들의 학문적 성과와 글로벌 위상을 한눈에 파악하고, 교육 정보 조회를 수월하게 돕기 위해 구축된 전문 탐색 도구입니다.
-              </p>
+              <div class="podium" id="podium"></div>
+            </div>
+          </section>
+
+          <!-- Rising Stars -->
+          <section class="panel">
+            <div class="hd">
+              <strong data-i18n="rising_stars_title">급상승 라이징 스타</strong>
+            </div>
+            <div class="bd">
+              <div id="risingStars" class="rising-stars"></div>
             </div>
           </section>
 
@@ -262,6 +270,20 @@
           </section>
         </div>
       </div>
+
+    <!-- About Project Section -->
+    <div style="margin-top: 14px;">
+      <section class="panel">
+        <div class="hd">
+          <strong data-i18n="about_title">세계 명문대 조회 및 학술 정보 가이드</strong>
+        </div>
+        <div class="bd">
+          <p class="hint" data-i18n="about_desc" style="line-height: 1.6; margin-bottom: 0;">
+            본 플랫폼은 전 세계 유명 대학교들의 학문적 성과와 글로벌 위상을 한눈에 파악하고, 교육 정보 조회를 수월하게 돕기 위해 구축된 전문 탐색 도구입니다.
+          </p>
+        </div>
+      </section>
+    </div>
 
     <!-- Comments Section -->
     <section class="panel" style="margin-top: 14px;">
