@@ -1,6 +1,182 @@
 /**
+ * i18n Translations
+ */
+const translations = {
+  ko: {
+    app_title: "세계 대학교 상위 1000 탐색기",
+    app_desc: "연도 선택 · 검색 · 국가 필터 · 정렬 · 페이지로 세계 대학교 상위 1000개를 조회합니다",
+    btn_reload: "데이터 새로고침",
+    btn_reset: "필터 초기화",
+    btn_apply: "조회",
+    filter_title: "조회 조건",
+    shortcut_enter: "단축키 Enter 조회",
+    shortcut_search: "검색 포커스",
+    data_notice: "공개 CSV 데이터를 불러와서 보여주는 데모 페이지입니다. (Top 1000 표시는 선택한 연도 기준)",
+    label_search: "검색",
+    label_search_hint: "학교명/국가",
+    label_year: "연도",
+    label_year_hint: "데이터 연도",
+    label_country: "국가",
+    label_country_hint: "선택",
+    label_sort: "정렬",
+    label_sort_hint: "기본: 세계랭킹",
+    label_page: "페이지 당",
+    label_page_hint: "표시 개수",
+    label_current: "현재 조건",
+    label_current_hint: "자동 요약",
+    msg_loading: "데이터 불러오는 중…",
+    msg_wait: "네트워크 상황에 따라 1~3초 걸릴 수 있어요",
+    source_credit: "데이터 출처: CWUR 공개 CSV",
+    result_title: "조회 결과",
+    meta_year: "연도",
+    meta_shown: "표시됨",
+    meta_total: "전체",
+    th_rank: "세계랭킹",
+    th_uni: "대학교",
+    th_country: "국가",
+    th_score: "점수",
+    msg_empty: "조건에 맞는 결과가 없어요.",
+    btn_prev: "이전",
+    btn_next: "다음",
+    page_label: "페이지",
+    tip_prefix: "Tip:",
+    tip_suffix: "로 검색창 포커스",
+    footer_note: "* 이 페이지는 예시용이며, “최신 2025/2026 Top1000”을 쓰려면 별도 데이터 소스를 연결해야 합니다.",
+    opt_all: "전체",
+    sort_rank_asc: "세계랭킹 ↑",
+    sort_rank_desc: "세계랭킹 ↓",
+    sort_score_desc: "점수 ↓",
+    sort_name_asc: "학교명 A→Z",
+    msg_data_ready: "데이터 준비 완료",
+    msg_render: "테이블을 렌더링 중…",
+    national_rank: "국가 내 순위"
+  },
+  en: {
+    app_title: "World University Top 1000 Explorer",
+    app_desc: "Explore top 1000 universities by year, search, country filter, sort, and pagination",
+    btn_reload: "Reload Data",
+    btn_reset: "Reset Filters",
+    btn_apply: "Apply",
+    filter_title: "Filters",
+    shortcut_enter: "Press Enter to search",
+    shortcut_search: "Focus search",
+    data_notice: "Demo page using public CSV data. (Top 1000 based on selected year)",
+    label_search: "Search",
+    label_search_hint: "Name/Country",
+    label_year: "Year",
+    label_year_hint: "Data Year",
+    label_country: "Country",
+    label_country_hint: "Select",
+    label_sort: "Sort",
+    label_sort_hint: "Default: World Rank",
+    label_page: "Per Page",
+    label_page_hint: "Count",
+    label_current: "Current Conditions",
+    label_current_hint: "Auto Summary",
+    msg_loading: "Loading data...",
+    msg_wait: "May take 1-3 seconds depending on network",
+    source_credit: "Data Source: CWUR Public CSV",
+    result_title: "Results",
+    meta_year: "Year",
+    meta_shown: "Shown",
+    meta_total: "Total",
+    th_rank: "World Rank",
+    th_uni: "University",
+    th_country: "Country",
+    th_score: "Score",
+    msg_empty: "No results found.",
+    btn_prev: "Prev",
+    btn_next: "Next",
+    page_label: "Page",
+    tip_prefix: "Tip:",
+    tip_suffix: "to focus search",
+    footer_note: "* This is a demo. For latest 2025/2026 data, connect to a separate source.",
+    opt_all: "All",
+    sort_rank_asc: "Rank Asc",
+    sort_rank_desc: "Rank Desc",
+    sort_score_desc: "Score Desc",
+    sort_name_asc: "Name A-Z",
+    msg_data_ready: "Data Ready",
+    msg_render: "Rendering table...",
+    national_rank: "National rank"
+  },
+  ja: {
+    app_title: "世界大学トップ1000エクスプローラー",
+    app_desc: "年度選択、検索、国フィルタ、ソート、ページングで世界大学トップ1000を照会します",
+    btn_reload: "データ更新",
+    btn_reset: "リセット",
+    btn_apply: "適用",
+    filter_title: "照会条件",
+    shortcut_enter: "Enterで照회",
+    shortcut_search: "検索フォーカス",
+    data_notice: "公開CSVデータを使用したデモページです。（トップ1000は選択年度基準）",
+    label_search: "検索",
+    label_search_hint: "大学名/国名",
+    label_year: "年度",
+    label_year_hint: "データ年度",
+    label_country: "国",
+    label_country_hint: "選択",
+    label_sort: "並び替え",
+    label_sort_hint: "デフォルト: 世界順位",
+    label_page: "表示件数",
+    label_page_hint: "1ページあたり",
+    label_current: "現在の条件",
+    label_current_hint: "自動要約",
+    msg_loading: "データを読み込み中...",
+    msg_wait: "ネットワーク状況により1〜3秒かかる場合があります",
+    source_credit: "データ出典: CWUR 公開 CSV",
+    result_title: "照会結果",
+    meta_year: "年度",
+    meta_shown: "表示中",
+    meta_total: "全体",
+    th_rank: "世界順位",
+    th_uni: "大学",
+    th_country: "国",
+    th_score: "スコア",
+    msg_empty: "該当する結果がありません。",
+    btn_prev: "前へ",
+    btn_next: "次へ",
+    page_label: "ページ",
+    tip_prefix: "Tip:",
+    tip_suffix: "で検索窓にフォーカス",
+    footer_note: "* このページはデモ用です。最新の2025/2026データを使用するには別途ソースが必要です。",
+    opt_all: "すべて",
+    sort_rank_asc: "世界順位 ↑",
+    sort_rank_desc: "世界順位 ↓",
+    sort_score_desc: "スコア ↓",
+    sort_name_asc: "大学名 A→Z",
+    msg_data_ready: "準備完了",
+    msg_render: "レンダ링中...",
+    national_rank: "国内順位"
+  }
+};
+
+const $ = (s) => document.querySelector(s);
+
+function setLanguage(lang) {
+  const dict = translations[lang] || translations.en;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) {
+      if (el.tagName === "INPUT") {
+        el.placeholder = dict[key];
+      } else {
+        el.textContent = dict[key];
+      }
+    }
+  });
+  localStorage.setItem("lang", lang);
+  $("#langSelect").value = lang;
+}
+
+$("#langSelect").addEventListener("change", (e) => {
+  setLanguage(e.target.value);
+  buildCountries(); // Update "All" option in select
+  render(); // Update labels in summary chips and table
+});
+
+/**
  * 데이터 소스 (공개 Raw CSV)
- * - CWUR csv (world_rank,institution,country,score,year 등)
  */
 const DATA_URL = "https://raw.githubusercontent.com/arnaudbenard/university-ranking/master/cwurData.csv";
 
@@ -15,21 +191,22 @@ const state = {
   pageSize: 50
 };
 
-const $ = (s) => document.querySelector(s);
-
 function setSourceStatus(loaded, msg){
   const box = $("#sourceBox");
+  const lang = localStorage.getItem("lang") || "ko";
+  const dict = translations[lang];
+
   box.innerHTML = loaded
     ? `<div class="dot" style="animation:none; opacity:1;">
        </div>
        <div>
-         <div style="color:var(--text); opacity:0.9; font-size:13px; font-weight:650;">데이터 준비 완료</div>
+         <div style="color:var(--text); opacity:0.9; font-size:13px; font-weight:650;">${dict.msg_data_ready}</div>
          <div style="font-size:12px;">${msg}</div>
        </div>`
     : `<div class="dot"></div>
        <div>
-         <div style="color:var(--text); opacity:0.86; font-size:13px; font-weight:650;">데이터 불러오는 중…</div>
-         <div style="font-size:12px;">${msg || "잠시만요"}</div>
+         <div style="color:var(--text); opacity:0.86; font-size:13px; font-weight:650;">${dict.msg_loading}</div>
+         <div style="font-size:12px;">${msg || dict.msg_wait}</div>
        </div>`;
 }
 
@@ -99,26 +276,31 @@ function buildCountries(){
     .filter(Boolean);
   const countries = uniq(list).sort((a,b)=>a.localeCompare(b));
   const sel = $("#country");
-  sel.innerHTML = `<option value="__ALL__">전체</option>`;
+  const lang = localStorage.getItem("lang") || "ko";
+  const allText = translations[lang].opt_all;
+  const prevVal = sel.value || "__ALL__";
+  
+  sel.innerHTML = `<option value="__ALL__">${allText}</option>`;
   countries.forEach(c=>{
     const opt = document.createElement("option");
     opt.value = c;
     opt.textContent = c;
     sel.appendChild(opt);
   });
-  state.country = "__ALL__";
-  sel.value = "__ALL__";
+  sel.value = prevVal;
 }
 
 function updateSummary(){
   const chips = $("#summaryChips");
+  const lang = localStorage.getItem("lang") || "ko";
+  const dict = translations[lang];
   const parts = [];
 
-  if (state.year) parts.push({k:"Year", v:String(state.year)});
-  if (state.country !== "__ALL__") parts.push({k:"Country", v:state.country});
-  if (state.q) parts.push({k:"Query", v:state.q});
-  parts.push({k:"Sort", v: $("#sort").selectedOptions[0].textContent});
-  parts.push({k:"Page", v: `${state.pageSize}/page`});
+  if (state.year) parts.push({k:dict.label_year, v:String(state.year)});
+  if (state.country !== "__ALL__") parts.push({k:dict.label_country, v:state.country});
+  if (state.q) parts.push({k:dict.label_search, v:state.q});
+  parts.push({k:dict.label_sort, v: $("#sort").selectedOptions[0].textContent});
+  parts.push({k:dict.page_label, v: `${state.pageSize}/page`});
 
   chips.innerHTML = "";
   parts.forEach(p=>{
@@ -164,6 +346,9 @@ function applyFilters(){
 }
 
 function render(){
+  const lang = localStorage.getItem("lang") || "ko";
+  const dict = translations[lang];
+
   $("#loadingArea").style.display = "block";
   $("#empty").style.display = "none";
   $("#tbody").innerHTML = "";
@@ -184,8 +369,8 @@ function render(){
   $("#metaYear").textContent = state.year ? String(state.year) : "-";
   $("#metaTotal").textContent = String(total);
   $("#metaShown").textContent = String(pageItems.length);
-  $("#metaCount").textContent = `Top 1000 (필터 후 ${total.toLocaleString()}개)`;
-  $("#metaNote").textContent = total ? ` · 현재 ${state.page}페이지` : "";
+  $("#metaCount").textContent = `Top 1000 (${dict.result_title} ${total.toLocaleString()})`;
+  $("#metaNote").textContent = total ? ` · ${state.page} / ${maxPage} ${dict.page_label}` : "";
 
   $("#resultTitle").textContent = `Top 1000 · ${state.year ?? "-"}`;
 
@@ -204,7 +389,7 @@ function render(){
       <td><span class="rank">#${it.world_rank}</span></td>
       <td>
         <div style="font-weight:650; color:var(--text); opacity:0.94;">${escapeHTML(it.institution)}</div>
-        <div style="margin-top:4px; color:var(--muted2); font-size:12px;">National rank: ${it.national_rank ?? "-"}</div>
+        <div style="margin-top:4px; color:var(--muted2); font-size:12px;">${dict.national_rank}: ${it.national_rank ?? "-"}</div>
       </td>
       <td><span class="pill"><b>${escapeHTML(it.country)}</b></span></td>
       <td><span class="pill"><b>${scoreText}</b> score</span></td>
@@ -226,7 +411,10 @@ function escapeHTML(s){
 }
 
 async function loadData(){
-  setSourceStatus(false, "공개 CSV를 가져오는 중…");
+  const lang = localStorage.getItem("lang") || "ko";
+  const dict = translations[lang];
+
+  setSourceStatus(false, dict.msg_loading);
   try{
     const res = await fetch(DATA_URL, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -277,7 +465,7 @@ async function loadData(){
     state.pageSize = Number($("#pageSize").value);
     state.sort = $("#sort").value;
 
-    setSourceStatus(true, `총 ${state.raw.length.toLocaleString()} rows 로드 완료 · 소스: CWUR CSV`);
+    setSourceStatus(true, `총 ${state.raw.length.toLocaleString()} rows 로드 완료`);
     render();
   } catch (e){
     setSourceStatus(true, `로드 실패: ${e.message}`);
@@ -382,6 +570,10 @@ themeToggle.addEventListener("click", () => {
 // Init theme
 const savedTheme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 setTheme(savedTheme);
+
+// Init language
+const savedLang = localStorage.getItem("lang") || "ko";
+setLanguage(savedLang);
 
 // init
 loadData();
