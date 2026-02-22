@@ -281,38 +281,79 @@ tbody tr:hover { background: var(--tr-hover); }
   text-align: center;
 }
 
-footer {
-  margin-top: 16px;
-  text-align: center;
-  color: var(--muted2);
-  font-size: 12px;
+/* Modal & Slide Over */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
+  z-index: 1000; display: none; opacity: 0; transition: opacity 0.3s ease;
+}
+.modal-overlay.active { display: flex; opacity: 1; }
+
+.modal-content {
+  position: fixed; right: -100%; top: 0; width: 400px; height: 100%;
+  background: var(--bg1); border-left: 1px solid var(--line);
+  box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+  z-index: 1001; padding: 40px 24px;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex; flex-direction: column;
+}
+@media (max-width: 500px) { .modal-content { width: 100%; } }
+.modal-overlay.active + .modal-content, .modal-content.active { right: 0; }
+
+.modal-hd { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.modal-hd h2 { margin: 0; font-size: 20px; font-weight: 700; color: var(--text); }
+.modal-bd { flex: 1; overflow-y: auto; color: var(--muted); line-height: 1.7; font-size: 14px; }
+
+/* Fun & Exciting Enhancements */
+.panel {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.panel:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, .5);
 }
 
-/* Lang & Theme Select Controls */
-.control-group {
-  display: flex; gap: 8px; align-items: center;
+.btn {
+  position: relative; overflow: hidden;
 }
-.select-sm {
-  background: var(--card);
-  border: 1px solid var(--line);
-  color: var(--text);
-  padding: 6px 8px;
-  border-radius: 8px;
-  font-size: 12px;
-  cursor: pointer;
-  outline: none;
+.btn::after {
+  content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+  background: rgba(255,255,255,0.2); border-radius: 50%;
+  transform: translate(-50%, -50%); transition: width 0.4s, height 0.4s;
 }
-.select-sm:hover { border-color: var(--line2); }
+.btn:active::after { width: 200%; height: 200%; opacity: 0; }
 
-.icon-btn {
-  background: var(--card);
-  border: 1px solid var(--line);
-  color: var(--text);
-  width: 32px; height: 32px;
-  border-radius: 99px;
-  display: grid; place-items: center;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.2s;
+.btn.primary {
+  animation: pulse-border 2s infinite;
 }
-.icon-btn:hover { background: var(--line); }
+@keyframes pulse-border {
+  0% { box-shadow: 0 0 0 0 rgba(0, 220, 255, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 220, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 220, 255, 0); }
+}
+
+.logo {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+footer a:hover {
+  color: var(--text); text-decoration: underline; cursor: pointer;
+}
+
+.icon-btn:hover {
+  transform: rotate(15deg) scale(1.2);
+}
+
+/* Staggered Row Animation */
+tbody tr {
+  animation: slide-up 0.4s ease forwards;
+  opacity: 0;
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

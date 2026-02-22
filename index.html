@@ -173,11 +173,11 @@
           <!-- About Project Panel -->
           <section class="panel">
             <div class="hd">
-              <strong data-i18n="about_title">프로젝트 소개</strong>
+              <strong data-i18n="about_title">세계 명문대 조회 및 학술 정보 가이드</strong>
             </div>
             <div class="bd">
               <p class="hint" data-i18n="about_desc" style="line-height: 1.6; margin-bottom: 0;">
-                이 프로젝트는 전 세계 대학교의 경쟁력과 학문적 성과를 탐색할 수 있도록 돕는 CWUR 데이터를 기반으로 한 웹 도구입니다.
+                본 플랫폼은 전 세계 유명 대학교들의 학문적 성과와 글로벌 위상을 한눈에 파악하고, 교육 정보 조회를 수월하게 돕기 위해 구축된 전문 탐색 도구입니다.
               </p>
             </div>
           </section>
@@ -263,18 +263,6 @@
         </div>
       </div>
 
-    <!-- Privacy & Terms Modal/Section -->
-    <div class="grid" style="margin-top: 14px;">
-      <section class="panel">
-        <div class="hd"><strong data-i18n="policy_privacy">개인정보처리방침</strong></div>
-        <div class="bd"><p class="hint" data-i18n="privacy_content" style="font-size: 12px;"></p></div>
-      </section>
-      <section class="panel">
-        <div class="hd"><strong data-i18n="policy_terms">이용약관</strong></div>
-        <div class="bd"><p class="hint" data-i18n="terms_content" style="font-size: 12px;"></p></div>
-      </section>
-    </div>
-
     <!-- Comments Section -->
     <section class="panel" style="margin-top: 14px;">
       <div class="hd">
@@ -304,8 +292,25 @@
     </section>
 
     <footer style="margin-top: 40px; padding: 20px; border-top: 1px solid var(--line); text-align: center;">
+      <div style="margin-bottom: 12px; display: flex; justify-content: center; gap: 20px;">
+        <a id="openPrivacy" data-i18n="policy_privacy" style="font-size: 13px; color: var(--muted2);"></a>
+        <a id="openTerms" data-i18n="policy_terms" style="font-size: 13px; color: var(--muted2);"></a>
+      </div>
       <p data-i18n="copyright" style="font-size: 13px; color: var(--muted2);"></p>
     </footer>
+  </div>
+
+  <!-- Modal / Slide Over -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal-content" id="modalContent">
+    <div class="modal-hd">
+      <h2 id="modalTitle">Policy</h2>
+      <button class="icon-btn" id="closeModal">✕</button>
+    </div>
+    <div class="modal-bd" id="modalBody"></div>
+    <div style="margin-top: 24px;">
+      <button class="btn primary" style="width: 100%;" id="btnModalClose" data-i18n="btn_close">닫기</button>
+    </div>
   </div>
 
   <script src="main.js" defer></script>

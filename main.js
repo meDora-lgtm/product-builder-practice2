@@ -58,14 +58,15 @@ const translations = {
     btn_send: "문의하기",
     comments_title: "댓글",
     label_ads: "광고",
-    // 승인 최적화 문구
-    about_title: "프로젝트 소개",
-    about_desc: "이 프로젝트는 전 세계 대학교의 경쟁력과 학문적 성과를 탐색할 수 있도록 돕는 CWUR(Center for World University Rankings) 데이터를 기반으로 한 웹 도구입니다. 사용자들은 연도별 랭킹 변화를 확인하고, 국가별 필터링을 통해 본인이 관심 있는 교육 기관의 정보를 손쉽게 찾을 수 있습니다.",
+    // 승인 최적화 문구 (고급화)
+    about_title: "세계 명문대 조회 및 학술 정보 가이드",
+    about_desc: "본 플랫폼은 전 세계 유명 대학교들의 학문적 성과와 글로벌 위상을 한눈에 파악하고, 교육 정보 조회를 수월하게 돕기 위해 구축된 전문 탐색 도구입니다. CWUR 데이터를 바탕으로 공신력 있는 랭킹 정보를 제공하며, 미래를 준비하는 학생들과 연구자들에게 최적화된 데이터 분석 환경을 제공합니다.",
     policy_privacy: "개인정보처리방침",
     policy_terms: "이용약관",
-    privacy_content: "본 사이트는 사용자의 개인정보를 수집하거나 저장하지 않습니다. 단, Google AdSense 및 Disqus와 같은 제3자 서비스를 통해 쿠키가 사용될 수 있으며, 이는 광고 개인화 및 댓글 서비스 제공을 목적으로 합니다.",
-    terms_content: "본 사이트에서 제공하는 데이터는 교육적 목적의 참고용입니다. 데이터의 정확성을 기하기 위해 노력하나, 실제 정보와 차이가 있을 수 있으므로 공식 기관의 자료를 최종 확인하시기 바랍니다.",
-    copyright: "© 2026 World Uni Explorer. All Rights Reserved."
+    privacy_content: "본 사이트는 사용자의 개인정보를 직접 수집하지 않습니다. 다만 광고 및 통계 분석을 위해 Google AdSense 및 Disqus의 쿠키가 사용될 수 있습니다.",
+    terms_content: "제공되는 모든 순위 데이터는 참고용이며, 최신 정보는 각 교육 기관의 공식 발표를 기준으로 합니다.",
+    copyright: "© 2026 World Uni Explorer. Empowering Global Education.",
+    btn_close: "닫기"
   },
   en: {
     app_title: "World University Top 1000 Explorer",
@@ -623,3 +624,50 @@ setLanguage(savedLang);
 
 // init
 loadData();
+
+/**
+ * Modal Logic
+ */
+const modalOverlay = $("#modalOverlay");
+const modalContent = $("#modalContent");
+const modalTitle = $("#modalTitle");
+const modalBody = $("#modalBody");
+
+function openModal(type) {
+  const lang = localStorage.getItem("lang") || "ko";
+  const dict = translations[lang];
+  
+  if (type === "privacy") {
+    modalTitle.textContent = dict.policy_privacy;
+    modalBody.textContent = dict.privacy_content;
+  } else {
+    modalTitle.textContent = dict.policy_terms;
+    modalBody.textContent = dict.terms_content;
+  }
+  
+  modalOverlay.classList.add("active");
+  modalContent.classList.add("active");
+  document.body.style.overflow = "hidden"; // scroll lock
+}
+
+function closeModal() {
+  modalOverlay.classList.remove("active");
+  modalContent.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+$("#openPrivacy").addEventListener("click", () => openModal("privacy"));
+$("#openTerms").addEventListener("click", () => openModal("terms"));
+$("#closeModal").addEventListener("click", closeModal);
+$("#modalOverlay").addEventListener("click", closeModal);
+$("#btnModalClose").addEventListener("click", closeModal);
+
+/**
+ * Fun Interaction: Visual feedback on Apply
+ */
+$("#btnApply").addEventListener("mousedown", () => {
+  $("#btnApply").style.transform = "scale(0.95)";
+});
+$("#btnApply").addEventListener("mouseup", () => {
+  $("#btnApply").style.transform = "scale(1)";
+});
