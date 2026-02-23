@@ -7,7 +7,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-FGWZDNGYVD');
   </script>
   <script type="text/javascript">
@@ -19,477 +18,256 @@
   </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title data-i18n="app_title">World University Top 1000 Explorer</title>
-  <meta name="description" content="Explore and analyze the World University Rankings Top 1000 with CWUR data. Filter by year, country, and academic performance." />
-  <meta name="keywords" content="University Ranking, World Ranking, Education, CWUR, Top 1000 Universities" />
+  <title id="dynamicTitle" data-i18n="app_title">World University Rankings 2025 Explorer</title>
+  <meta name="description" id="dynamicDesc" content="Explore and analyze the World University Rankings Top 1000. Filter by year, country, and academic performance." />
+  <meta name="keywords" content="University Ranking, World Ranking, Education, Top 1000 Universities, Study Abroad" />
   <meta name="author" content="World Uni Explorer" />
   <link rel="canonical" href="https://product-builder-practice2.vercel.app/" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="World University Top 1000 Explorer" />
-  <meta property="og:description" content="Analyze top university rankings worldwide using interactive filters." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://product-builder-practice2.vercel.app/" />
 
   <!-- Pretendard -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
   
-    <!-- Google AdSense -->
-    <meta name="google-adsense-account" content="ca-pub-9189132340963348">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9189132340963348"
-       crossorigin="anonymous"></script>
-  </head>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Google AdSense -->
+  <meta name="google-adsense-account" content="ca-pub-9189132340963348">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9189132340963348" crossorigin="anonymous"></script>
+</head>
   
-  <body>
-    <div class="wrap">
-      <header>
-        <div class="brand">
-          <div class="logo">UNI</div>
-          <div>
-            <h1 data-i18n="app_title">World University Top 1000 Explorer</h1>
-            <p data-i18n="app_desc">전 세계 상위 1000개 명문 대학교의 최신 순위와 성과 데이터를 심층 분석합니다.</p>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand" onclick="location.hash=''" style="cursor:pointer;">
+        <div class="logo">UNI</div>
+        <div>
+          <h1 data-i18n="app_title">World University Rankings 2025 Explorer</h1>
+          <p data-i18n="app_desc">전 세계 상위 1000개 명문 대학교의 최신 순위와 성과 데이터를 심층 분석합니다.</p>
+        </div>
+      </div>
+
+      <div class="topActions">
+        <div class="control-group">
+          <select id="langSelect" class="select-sm" aria-label="Language">
+            <option value="ko">한국어</option>
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+          </select>
+          <button id="themeToggle" class="icon-btn" title="Toggle Theme">
+            <span id="themeIcon">🌙</span>
+          </button>
+        </div>
+        <div style="width: 1px; height: 24px; background: var(--line); margin: 0 4px;"></div>
+        <button class="btn" onclick="location.hash='dashboard'" data-i18n="nav_dashboard">마이 대시보드</button>
+        <button class="btn" onclick="location.hash='insights'" data-i18n="nav_insights">유학 인사이트</button>
+        <button class="btn primary" id="btnMatchMe" data-i18n="btn_match_me">AI 매칭</button>
+      </div>
+    </header>
+
+    <!-- Navigation Tab (Optional) -->
+    <nav class="main-nav">
+      <a href="#" class="nav-item active" data-view="home" data-i18n="nav_home">홈</a>
+      <a href="#insights" class="nav-item" data-view="insights" data-i18n="nav_insights">유학 인사이트</a>
+      <a href="#dashboard" class="nav-item" data-view="dashboard" data-i18n="nav_dashboard">내 보관함</a>
+    </nav>
+
+    <!-- Views Container -->
+    <main id="viewContainer">
+      
+      <!-- Home View -->
+      <div id="homeView" class="view active">
+        <div class="grid">
+          <!-- Filters -->
+          <section class="panel">
+            <div class="hd">
+              <strong data-i18n="filter_title">데이터 필터링</strong>
+              <span class="shortcut-hint"><span class="kbd">/</span> <span data-i18n="shortcut_search">검색 포커스</span></span>
+            </div>
+            <div class="bd">
+              <div class="field">
+                <div class="label"><span data-i18n="label_search">검색</span></div>
+                <input id="q" type="search" placeholder="Harvard / Korea / Tokyo..." autocomplete="off" />
+              </div>
+              <div class="row" style="margin-top:12px;">
+                <div class="field" style="flex:1;"><select id="year"></select></div>
+                <div class="field" style="flex:1;"><select id="country"><option value="__ALL__" data-i18n="opt_all">전체</option></select></div>
+              </div>
+              <div class="row" style="margin-top:12px;">
+                <div class="field" style="flex:1;"><select id="sort"></select></div>
+                <div class="field" style="flex:1;"><select id="pageSize"></select></div>
+              </div>
+              <div id="summaryChips" class="chips" style="margin-top:14px;"></div>
+              
+              <div class="ad-box-mini" style="margin-top:20px;">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9189132340963348" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+              </div>
+            </div>
+          </section>
+
+          <!-- Results Column -->
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <section class="panel">
+              <div class="hd"><strong data-i18n="podium_title">TOP 3 명예의 전당</strong></div>
+              <div class="bd"><div class="podium" id="podium"></div></div>
+            </section>
+
+            <section class="panel">
+              <div class="hd">
+                <strong data-i18n="result_title">조회 결과</strong>
+                <button class="btn sm" id="btnCompare" style="display:none;" data-i18n="btn_compare">비교하기 (<span id="compareCount">0</span>)</button>
+              </div>
+              <div class="bd">
+                <div id="loadingArea" class="loading" style="display:none;"><div class="dot"></div><div data-i18n="msg_rendering">...</div></div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th style="width:80px;" data-i18n="th_rank">순위</th>
+                        <th data-i18n="th_uni">대학교</th>
+                        <th style="width:150px;" data-i18n="th_country">국가</th>
+                        <th style="width:120px;" data-i18n="th_score">점수</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                  </table>
+                </div>
+                <div id="empty" class="empty" style="display:none;" data-i18n="msg_empty"></div>
+                <div class="pager">
+                  <div class="left"><button class="btn" id="prev">Prev</button><button class="btn" id="next">Next</button></div>
+                  <div class="right"><span id="pageNow">1</span> / <span id="pageMax">1</span></div>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
-  
-        <div class="topActions">
-          <div class="control-group">
-            <select id="langSelect" class="select-sm" aria-label="Language">
-              <option value="ko">한국어</option>
-              <option value="en">English</option>
-              <option value="ja">日本語</option>
-            </select>
-            <button id="themeToggle" class="icon-btn" title="Toggle Theme">
-              <span id="themeIcon">🌙</span>
-            </button>
-          </div>
-          <div style="width: 1px; height: 24px; background: var(--line); margin: 0 4px;"></div>
-          <button class="btn" id="btnMatchMe" title="Find your fit" data-i18n="btn_match_me">나에게 맞는 대학 찾기</button>
-          <button class="btn" id="btnCompare" title="Compare Universities" data-i18n="btn_compare" style="display:none;">비교하기 (<span id="compareCount">0</span>)</button>
-          <button class="btn" id="btnReload" title="Reload Data" data-i18n="btn_reload">데이터 업데이트</button>
-          <button class="btn" id="btnReset" title="Reset Filters" data-i18n="btn_reset">필터 초기화</button>
-          <button class="btn primary" id="btnApply" title="Apply Filters (Enter)" data-i18n="btn_apply">순위 조회</button>
-        </div>
-      </header>
-  
-      <div class="grid">
-        <!-- Filters -->
-        <section class="panel">
+      </div>
+
+      <!-- Detail View (Standalone Page feel) -->
+      <div id="detailView" class="view">
+        <section class="panel university-profile">
           <div class="hd">
-            <strong data-i18n="filter_title">데이터 필터링</strong>
-            <span style="color:var(--muted2); font-size:12px;">
-              <span data-i18n="shortcut_enter">단축키 Enter 조회</span> · <span class="kbd">/</span> <span data-i18n="shortcut_search">검색 포커스</span>
-            </span>
+            <button class="btn sm" onclick="history.back()">← <span data-i18n="btn_back">Back</span></button>
+            <strong id="uniPageTitle">University Name</strong>
+            <button class="btn sm primary" id="btnShareUni">Share</button>
           </div>
           <div class="bd">
-            <p class="hint" data-i18n="data_notice">
-              본 대시보드는 글로벌 대학 평가 기관의 공개 데이터를 기반으로 최적화된 분석 리포트를 제공합니다.
-            </p>
-  
-            <div class="field">
-              <div class="label">
-                <span data-i18n="label_search">검색</span>
-                <small data-i18n="label_search_hint">학교명/국가</small>
-              </div>
-              <input id="q" type="search" placeholder="Harvard / Korea / Tokyo..." autocomplete="off" />
-            </div>
-  
-            <div class="row" style="margin-top:12px;">
-              <div class="field" style="flex:1; min-width: 180px;">
-                <div class="label">
-                  <span data-i18n="label_year">연도</span>
-                  <small data-i18n="label_year_hint">데이터 연도</small>
-                </div>
-                <select id="year"></select>
-              </div>
-  
-              <div class="field" style="flex:1; min-width: 180px;">
-                <div class="label">
-                  <span data-i18n="label_country">국가</span>
-                  <small data-i18n="label_country_hint">선택</small>
-                </div>
-                <select id="country">
-                  <option value="__ALL__" data-i18n="opt_all">전체</option>
-                </select>
+            <div class="profile-header">
+              <div class="rank-badge big" id="uniPageRank">#1</div>
+              <div class="info">
+                <h2 id="uniPageName">Massachusetts Institute of Technology</h2>
+                <p id="uniPageCountry">United States</p>
               </div>
             </div>
-  
-            <div class="row" style="margin-top:12px;">
-              <div class="field" style="flex:1; min-width: 180px;">
-                <div class="label">
-                  <span data-i18n="label_sort">정렬</span>
-                  <small data-i18n="label_sort_hint">기본: 세계랭킹</small>
-                </div>
-                <select id="sort">
-                  <option value="rank_asc" data-i18n="sort_rank_asc">세계랭킹 ↑</option>
-                  <option value="rank_desc" data-i18n="sort_rank_desc">세계랭킹 ↓</option>
-                  <option value="score_desc" data-i18n="sort_score_desc">점수 ↓</option>
-                  <option value="name_asc" data-i18n="sort_name_asc">학교명 A→Z</option>
-                </select>
-              </div>
-  
-              <div class="field" style="flex:1; min-width: 180px;">
-                <div class="label">
-                  <span data-i18n="label_page">페이지 당</span>
-                  <small data-i18n="label_page_hint">표시 개수</small>
-                </div>
-                <select id="pageSize">
-                  <option value="25">25</option>
-                  <option value="50" selected>50</option>
-                  <option value="100">100</option>
-                  <option value="200">200</option>
-                </select>
-              </div>
+            
+            <div class="detail-grid">
+              <div class="detail-card"><strong>Tuition</strong><div id="uniPageTuition">-</div></div>
+              <div class="detail-card"><strong>Acceptance</strong><div id="uniPageAcceptance">-</div></div>
+              <div class="detail-card"><strong>Students</strong><div id="uniPageStudents">-</div></div>
+              <div class="detail-card"><strong>Min. TOEFL</strong><div id="uniPageToefl">-</div></div>
             </div>
-  
-            <div style="margin-top:14px;">
-              <div class="label">
-                <span data-i18n="label_current">현재 조건</span>
-                <small data-i18n="label_current_hint">자동 요약</small>
-              </div>
-              <div class="chips" id="summaryChips"></div>
+
+            <div style="margin-top:20px; display:flex; gap:10px;">
+              <button class="btn primary" id="btnSaveDeadline" data-i18n="btn_save_deadline">마감일 저장</button>
             </div>
-  
-            <div style="margin-top:14px;">
-              <div class="loading" id="sourceBox">
-                <div class="dot"></div>
-                <div>
-                  <div style="color:var(--text); opacity:0.9; font-size:13px; font-weight:650;" data-i18n="msg_loading">데이터 불러오는 중…</div>
-                  <div style="font-size:12px;" data-i18n="msg_wait">네트워크 상황에 따라 1~3초 걸릴 수 있어요</div>
-                </div>
+
+            <div class="content-split">
+              <div class="text-content">
+                <h3 data-i18n="detail_history">학교 역사 및 특징</h3>
+                <p id="uniPageDesc">...</p>
+                <h3 data-i18n="detail_career">졸업 후 진로 및 평판</h3>
+                <p id="uniPageCareer">...</p>
               </div>
-              <p class="hint" style="margin-top:10px;" data-i18n="source_credit">
-                데이터 출처: CWUR 공개 CSV
-              </p>
-            </div>
-  
-            <!-- Partnership Inquiry Form -->
-            <div style="margin-top:24px; padding-top:20px; border-top:1px dashed var(--line2);">
-              <div class="label">
-                <span data-i18n="label_partnership">제휴 문의</span>
-                <small data-i18n="label_partnership_hint">Formspree</small>
+              <div class="chart-content">
+                <h3>Ranking Trend</h3>
+                <canvas id="rankingChart"></canvas>
               </div>
-              <form action="https://formspree.io/f/xgolnnna" method="POST" id="partnershipForm">
-                <div class="field" style="margin-bottom:8px;">
-                  <input type="text" name="name" data-i18n="placeholder_name" placeholder="성함 / 기업명" required />
-                </div>
-                <div class="field" style="margin-bottom:8px;">
-                  <input type="email" name="_replyto" data-i18n="placeholder_email" placeholder="이메일 주소" required />
-                </div>
-                <div class="field" style="margin-bottom:10px;">
-                  <textarea name="message" data-i18n="placeholder_message" placeholder="문의 내용을 입력해주세요" required style="width:100%; min-height:80px; padding:11px 12px; border-radius:12px; border:1px solid var(--line); background:var(--input-bg); color:var(--text); font-size:14px; font-family:inherit; resize:vertical;"></textarea>
-                </div>
-                <button type="submit" class="btn primary" style="width:100%; border-radius:12px;" data-i18n="btn_send">문의하기</button>
-              </form>
             </div>
           </div>
         </section>
-  
-        <!-- Results Column -->
-        <div style="display: flex; flex-direction: column; gap: 14px;">
-          <!-- Podium / Hall of Fame -->
+      </div>
+
+      <!-- Insights View (Blog/Articles) -->
+      <div id="insightsView" class="view">
+        <section class="panel">
+          <div class="hd"><strong data-i18n="nav_insights">유학 인사이트</strong></div>
+          <div class="bd">
+            <div id="articleList" class="article-grid"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Article Detail View -->
+      <div id="articleDetailView" class="view">
+        <section class="panel">
+          <div class="hd">
+            <button class="btn sm" onclick="location.hash='insights'">← <span data-i18n="btn_back">Back</span></button>
+            <strong id="articleTitle">Article Title</strong>
+          </div>
+          <div class="bd article-body">
+            <div id="articleMeta" class="article-meta"></div>
+            <div id="articleContent" class="article-content"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Dashboard View -->
+      <div id="dashboardView" class="view">
+        <div class="grid">
           <section class="panel">
-            <div class="hd">
-              <strong data-i18n="podium_title">TOP 3 명예의 전당</strong>
-            </div>
+            <div class="hd"><strong data-i18n="dash_compare">비교 보관함</strong></div>
             <div class="bd">
-              <div class="podium" id="podium"></div>
+              <div id="dashCompareList" class="vertical-list"></div>
+              <button class="btn primary" style="width:100%; margin-top:12px;" onclick="openCompareModal()" data-i18n="btn_compare_all">선택 대학 비교하기</button>
             </div>
           </section>
-
-          <!-- Rising Stars -->
           <section class="panel">
-            <div class="hd">
-              <strong data-i18n="rising_stars_title">급상승 라이징 스타</strong>
-            </div>
+            <div class="hd"><strong data-i18n="dash_deadline">마감일 일정</strong></div>
             <div class="bd">
-              <div id="risingStars" class="rising-stars"></div>
-            </div>
-          </section>
-
-          <!-- Advertisement Panel -->
-          <section class="panel">
-            <div class="hd">
-              <strong data-i18n="label_ads">광고</strong>
-            </div>
-            <div class="bd" style="display: flex; justify-content: center; min-height: 100px; background: var(--input-bg); border-radius: 8px;">
-              <!-- Ad unit placeholder -->
-              <ins class="adsbygoogle"
-                   style="display:block"
-                   data-ad-client="ca-pub-9189132340963348"
-                   data-ad-slot="auto"
-                   data-ad-format="auto"
-                   data-full-width-responsive="true"></ins>
-              <script>
-                   (adsbygoogle = window.adsbygoogle || []).push({});
-              </script>
-            </div>
-          </section>
-  
-          <!-- Results -->
-          <section class="panel">
-            <div class="hd">
-              <strong data-i18n="result_title">조회 결과</strong>
-              <span style="color:var(--muted2); font-size:12px;" id="resultTitle">Top 1000</span>
-            </div>
-  
-            <div class="bd">
-              <div class="meta">
-                <div>
-                  <span id="metaCount">-</span>
-                  <span style="color:var(--muted2);" id="metaNote"></span>
-                </div>
-                <div class="row">
-                  <span class="pill"><b id="metaYear">-</b> <span data-i18n="meta_year">Year</span></span>
-                  <span class="pill"><b id="metaShown">-</b> <span data-i18n="meta_shown">Shown</span></span>
-                  <span class="pill"><b id="metaTotal">-</b> <span data-i18n="meta_total">Total</span></span>
-                </div>
-              </div>
-  
-              <div id="loadingArea" class="loading" style="display:none;">
-                <div class="dot"></div>
-                <div data-i18n="msg_rendering">테이블을 렌더링 중…</div>
-              </div>
-  
-              <div style="overflow:auto; border-radius:14px; border:1px solid var(--line);">
-                <table>
-                  <thead>
-                    <tr>
-                      <th style="width:120px;" data-i18n="th_rank">세계랭킹</th>
-                      <th data-i18n="th_uni">대학교</th>
-                      <th style="width:220px;" data-i18n="th_country">국가</th>
-                      <th style="width:140px;" data-i18n="th_score">점수</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tbody"></tbody>
-                </table>
-              </div>
-  
-              <div id="empty" class="empty" style="display:none; margin-top:12px;" data-i18n="msg_empty">
-                조건에 맞는 결과가 없어요.
-              </div>
-  
-              <div class="pager">
-                <div class="left">
-                  <button class="btn" id="prev" data-i18n="btn_prev">이전</button>
-                  <button class="btn" id="next" data-i18n="btn_next">다음</button>
-                  <span><span data-i18n="page_label">페이지</span> <b id="pageNow">1</b> / <b id="pageMax">1</b></span>
-                </div>
-                <div class="right">
-                  <span style="color:var(--muted2);"><span data-i18n="tip_prefix">Tip:</span> <span class="kbd">/</span> <span data-i18n="tip_suffix">로 검색창 포커스</span></span>
-                </div>
-              </div>
-  
-              <footer data-i18n="footer_note">
-                * 이 페이지는 예시용이며, “최신 2025/2026 Top1000”을 쓰려면 별도 데이터 소스를 연결해야 합니다.
-              </footer>
+              <div id="dashDeadlineList" class="vertical-list"></div>
             </div>
           </section>
         </div>
       </div>
 
-    <!-- About Project Section -->
-    <div style="margin-top: 14px;">
-      <section class="panel">
-        <div class="hd">
-          <strong data-i18n="about_title">세계 명문대 조회 및 학술 정보 가이드</strong>
-        </div>
-        <div class="bd">
-          <p class="hint" data-i18n="about_desc" style="line-height: 1.6; margin-bottom: 0;">
-            본 플랫폼은 전 세계 유명 대학교들의 학문적 성과와 글로벌 위상을 한눈에 파악하고, 교육 정보 조회를 수월하게 돕기 위해 구축된 전문 탐색 도구입니다.
-          </p>
-        </div>
-      </section>
-    </div>
+      <!-- Policy Views -->
+      <div id="privacyView" class="view"><section class="panel"><div class="hd"><strong>Privacy Policy</strong></div><div class="bd" id="privacyContentText"></div></section></div>
+      <div id="termsView" class="view"><section class="panel"><div class="hd"><strong>Terms of Service</strong></div><div class="bd" id="termsContentText"></div></section></div>
+      <div id="aboutView" class="view"><section class="panel"><div class="hd"><strong data-i18n="about_title">사이트 소개</strong></div><div class="bd" id="aboutContentText"></div></section></div>
 
-    <!-- Educational Insights Section -->
-    <div style="margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-      <section class="panel">
-        <div class="hd">
-          <strong data-i18n="guide_title">성공적인 대학 선택을 위한 가이드</strong>
-        </div>
-        <div class="bd" style="font-size: 13px; line-height: 1.6; color: var(--muted);">
-          <p style="margin-top: 0;">전 세계 수천 개의 대학교 중 자신에게 가장 적합한 교육 기관을 선택하는 것은 매우 중요한 결정입니다. 순위 데이터뿐만 아니라 다음 요소들을 종합적으로 고려해야 합니다:</p>
-          <ul style="padding-left: 20px; margin-bottom: 0;">
-            <li><strong>학문적 평판 (Academic Reputation):</strong> 전 세계 학자들의 평가를 통해 해당 대학의 연구 질과 교육 수준을 파악하세요.</li>
-            <li><strong>취업 역량 (Employer Reputation):</strong> 졸업생들에 대한 고용주들의 평가와 취업률 데이터를 확인하십시오.</li>
-            <li><strong>교원 대비 학생 비율:</strong> 개인별 맞춤 교육 환경이 조성되어 있는지 확인하는 지표입니다.</li>
-            <li><strong>국제화 지수:</strong> 다양한 문화적 배경 속에서 글로벌 네트워크를 형성할 수 있는 기회를 평가하세요.</li>
-          </ul>
-        </div>
-      </section>
-      <section class="panel">
-        <div class="hd">
-          <strong data-i18n="methodology_title">랭킹 데이터 분석 방법론</strong>
-        </div>
-        <div class="bd" style="font-size: 13px; line-height: 1.6; color: var(--muted);">
-          <p style="margin-top: 0;">World Uni Explorer는 공신력 있는 글로벌 대학 평가 지표를 활용하여 데이터를 시각화합니다. 주요 분석 지표는 다음과 같습니다:</p>
-          <ul style="padding-left: 20px; margin-bottom: 0;">
-            <li>연구 논문 피인용 수 (Citations per Faculty)</li>
-            <li>외국인 교원 및 학생 비율 (International Ratio)</li>
-            <li>지속 가능성 지수 (Sustainability)</li>
-            <li>학문 분야별 전문성 분석</li>
-          </ul>
-          <p style="margin-top: 10px; font-style: italic;">* 모든 데이터는 매년 업데이트되며, 교육 트렌드 변화를 즉각적으로 반영합니다.</p>
-        </div>
-      </section>
-    </div>
+    </main>
 
-    <!-- Comments Section -->
-    <section class="panel" style="margin-top: 14px;">
-      <div class="hd">
-        <strong data-i18n="comments_title">Comments</strong>
+    <footer class="main-footer">
+      <div class="footer-links">
+        <a href="#privacy" data-i18n="policy_privacy">개인정보처리방침</a>
+        <a href="#terms" data-i18n="policy_terms">이용약관</a>
+        <a href="#about" data-i18n="about_title">사이트 소개</a>
       </div>
-      <div class="bd">
-        <div id="disqus_thread"></div>
-        <script>
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            /*
-            var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://product-project-2.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    </section>
-
-    <footer style="margin-top: 40px; padding: 20px; border-top: 1px solid var(--line); text-align: center;">
-      <div style="margin-bottom: 12px; display: flex; justify-content: center; gap: 20px;">
-        <a id="openPrivacy" data-i18n="policy_privacy" style="font-size: 13px; color: var(--muted2);"></a>
-        <a id="openTerms" data-i18n="policy_terms" style="font-size: 13px; color: var(--muted2);"></a>
-      </div>
-      <p data-i18n="copyright" style="font-size: 13px; color: var(--muted2);"></p>
+      <p id="footerCopyright">© 2026 World Uni Explorer. Leading Global Education Insights.</p>
     </footer>
   </div>
 
-  <!-- Modal / Slide Over -->
+  <!-- Shared Modals (Match Me, Compare) -->
   <div class="modal-overlay" id="modalOverlay"></div>
   
-  <!-- Policy Modal -->
-  <div class="modal-content" id="modalContent">
-    <div class="modal-hd">
-      <h2 id="modalTitle">Policy</h2>
-      <button class="icon-btn close-modal-btn">✕</button>
-    </div>
-    <div class="modal-bd" id="modalBody"></div>
-    <div style="margin-top: 24px;">
-      <button class="btn primary close-modal-btn" style="width: 100%;" data-i18n="btn_close">닫기</button>
-    </div>
-  </div>
-
-  <!-- Match Me Modal -->
   <div class="modal-content" id="matchMeModal">
     <div class="modal-hd">
-      <h2 data-i18n="match_title">나에게 맞는 대학 찾기</h2>
+      <h2 data-i18n="match_title">AI 대학 추천</h2>
       <button class="icon-btn close-modal-btn">✕</button>
     </div>
     <div class="modal-bd">
-      <p class="hint" data-i18n="match_desc">간단한 정보를 입력하면 AI 알고리즘이 추천 대학을 분석해 드립니다.</p>
-      
-      <div class="field" style="margin-bottom:12px;">
-        <div class="label"><span data-i18n="label_gpa">GPA / 성적</span></div>
-        <select id="matchGpa">
-          <option value="4.0">Top Tier (4.0 / A+)</option>
-          <option value="3.5">High (3.5+ / A-)</option>
-          <option value="3.0">Mid (3.0+ / B)</option>
-        </select>
-      </div>
-
-      <div class="field" style="margin-bottom:12px;">
-        <div class="label"><span data-i18n="label_interest">관심 분야</span></div>
-        <select id="matchInterest">
-          <option value="sci">Science & Tech</option>
-          <option value="hum">Humanities & Arts</option>
-          <option value="bus">Business & Economics</option>
-        </select>
-      </div>
-
-      <button class="btn primary" id="btnRunMatch" style="width:100%; margin-top:10px;" data-i18n="btn_run_match">분석 시작</button>
-
-      <div id="matchResults" style="margin-top:20px; display:none;">
-        <h3 data-i18n="match_result_title">추천 결과</h3>
-        <div id="matchList" class="rising-stars"></div>
-      </div>
+      <div class="field"><div class="label">GPA</div><select id="matchGpa"><option value="4.0">4.0+</option><option value="3.5">3.5+</option><option value="3.0">3.0+</option></select></div>
+      <div class="field" style="margin-top:12px;"><div class="label" data-i18n="label_interest">관심분야</div><select id="matchInterest"><option value="sci">Science</option><option value="hum">Humanities</option><option value="bus">Business</option></select></div>
+      <button class="btn primary" id="btnRunMatch" style="width:100%; margin-top:16px;" data-i18n="btn_run_match">분석 시작</button>
+      <div id="matchResults" style="margin-top:20px; display:none;"><div id="matchList" class="rising-stars"></div></div>
     </div>
   </div>
 
-  <!-- Comparison Modal -->
-  <div class="modal-content wide" id="compareModal" style="width: 80%; max-width: 900px;">
-    <div class="modal-hd">
-      <h2 data-i18n="compare_title">대학 비교 분석</h2>
-      <button class="icon-btn close-modal-btn">✕</button>
-    </div>
-    <div class="modal-bd">
-      <div style="overflow-x:auto;">
-        <table class="compare-table" id="compareTable">
-          <!-- Populated by JS -->
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- Detail Modal -->
-  <div class="modal-content wide" id="detailModal" style="width: 80%; max-width: 800px;">
-    <div class="modal-hd">
-      <h2 id="detailTitle">University Name</h2>
-      <button class="icon-btn close-modal-btn">✕</button>
-    </div>
-    <div class="modal-bd">
-      <div class="detail-section">
-        <h3 data-i18n="detail_overview">개요</h3>
-        <p id="detailDesc" style="color:var(--muted); line-height:1.6;">...</p>
-      </div>
-
-      <div class="detail-grid">
-        <div class="detail-card">
-          <strong data-i18n="label_tuition">예상 학비</strong>
-          <div id="detailTuition">-</div>
-        </div>
-        <div class="detail-card">
-          <strong data-i18n="label_acceptance">합격률</strong>
-          <div id="detailAcceptance">-</div>
-        </div>
-        <div class="detail-card">
-          <strong data-i18n="label_students">학생 수</strong>
-          <div id="detailStudents">-</div>
-        </div>
-      </div>
-
-      <div class="detail-section">
-        <h3 data-i18n="detail_intl">유학생 정보 (International Hub)</h3>
-        <ul id="detailIntlList" style="padding-left:20px; color:var(--muted);"></ul>
-      </div>
-
-      <div class="detail-section">
-        <h3 data-i18n="detail_deadlines">마감일 트래커</h3>
-        <div class="deadline-box" id="detailDeadlineBox">
-          <span id="detailDeadlineDate">-</span>
-          <button class="btn" id="btnSaveDeadline" data-i18n="btn_save_deadline">Save Date</button>
-        </div>
-      </div>
-
-      <div class="detail-section">
-        <h3 data-i18n="detail_calc">장학금 계산기 (Net Price Calc)</h3>
-        <div class="calc-box">
-          <div class="row">
-            <input type="number" id="calcIncome" placeholder="Annual Income ($)" style="flex:1;">
-            <button class="btn primary" id="btnCalc" data-i18n="btn_calculate">계산</button>
-          </div>
-          <div id="calcResult" style="margin-top:10px; font-weight:bold; color:var(--primary);"></div>
-        </div>
-      </div>
-    </div>
+  <div class="modal-content wide" id="compareModal">
+    <div class="modal-hd"><h2 data-i18n="compare_title">대학 비교</h2><button class="icon-btn close-modal-btn">✕</button></div>
+    <div class="modal-bd"><div style="overflow-x:auto;"><table class="compare-table" id="compareTable"></table></div></div>
   </div>
 
   <script src="main.js" defer></script>
