@@ -38,7 +38,7 @@ const translations = {
     msg_saved_deadline: "마감일이 내 보관함에 저장되었습니다.",
     privacy_content: "World Uni Explorer는 사용자의 개인정보를 소중히 다룹니다. 본 사이트는 쿠키를 통해 서비스를 개선하며, 상세 내용은 구글의 정책을 따릅니다.",
     terms_content: "본 서비스의 데이터는 참고용이며, 정확한 정보는 각 대학의 공식 발표를 확인하시기 바랍니다.",
-    about_content: "World University Explorer는 전 세계 학생들과 연구자들에게 공신력 있는 대학 데이터를 제공하기 위해 설립되었습니다. 우리는 단순한 순위를 넘어, 실질적인 유학 전략과 학교별 심층 정보를 제공함으로써 최선의 교육적 선택을 돕고자 합니다.",
+    about_content: "World University Explorer는 전 세계 학생들과 연구자들에게 공신력 있는 대학 데이터를 제공하기 위해 설립되었습니다.",
     btn_save_deadline: "마감일 저장",
     share_text: "나에게 딱 맞는 대학을 찾았어요!",
     msg_shared: "공유 링크가 클립보드에 복사되었습니다.",
@@ -50,7 +50,8 @@ const translations = {
     label_sort: "정렬",
     label_page: "표시 수량",
     review_score: "평점",
-    reputation_score: "평판 지수"
+    reputation_score: "평판 지수",
+    btn_read_more: "기사 전문 보기"
   },
   en: {
     app_title: "World University Explorer 2025",
@@ -100,7 +101,8 @@ const translations = {
     label_sort: "Sort",
     label_page: "Per Page",
     review_score: "Score",
-    reputation_score: "Reputation"
+    reputation_score: "Reputation",
+    btn_read_more: "Read Full Article"
   },
   ja: {
     app_title: "世界大学エクスプローラー 2025",
@@ -108,7 +110,7 @@ const translations = {
     nav_home: "ホーム",
     nav_insights: "留学インサイト",
     nav_dashboard: "マイダッシュボード",
-    filter_title: "데이터 분석 조건",
+    filter_title: "データ分析条件",
     label_search: "大学検索",
     podium_title: "TOP 3 殿堂入り",
     result_title: "照会結果",
@@ -150,7 +152,8 @@ const translations = {
     label_sort: "並び替え",
     label_page: "表示件数",
     review_score: "評価",
-    reputation_score: "評判指数"
+    reputation_score: "評判指数",
+    btn_read_more: "記事全文を読む"
   }
 };
 
@@ -178,7 +181,7 @@ const RANKING_HISTORY = {
 };
 
 /**
- * Data Generation: 1000 Universities with News
+ * Data Generation: 1000 Universities with Dynamic News Links
  */
 function generateUniversityData() {
   const baseData = [
@@ -203,24 +206,19 @@ function generateUniversityData() {
   
   const newsPool = [
     {
-      ko: { title: "새로운 인공지능 연구 센터 개소", content: "본교는 혁신적인 AI 연구를 선도하기 위해 새로운 연구 센터를 설립했습니다." },
-      en: { title: "New AI Research Center Opens", content: "The university has established a new center to lead innovative AI research." },
-      ja: { title: "新しいAI研究センターが開設", content: "本校は革新的なAI研究をリードするため、新しい研究センターを設立しました。" }
+      ko: { title: "새로운 인공지능 연구 센터 개소", content: "본교는 혁신적인 AI 연구를 선도하기 위해 새로운 연구 센터를 설립했습니다.", url: "https://www.google.com/search?q=university+ai+research+news" },
+      en: { title: "New AI Research Center Opens", content: "The university has established a new center to lead innovative AI research.", url: "https://www.google.com/search?q=university+ai+research+news" },
+      ja: { title: "新しいAI研究センターが開設", content: "本校は革新的なAI研究をリードするため、新しい研究センターを設立しました。", url: "https://www.google.com/search?q=university+ai+research+news" }
     },
     {
-      ko: { title: "글로벌 지속 가능성 파트너십 체결", content: "기후 변화 대응을 위해 세계 유수의 기관들과 새로운 협력 관계를 맺었습니다." },
-      en: { title: "Global Sustainability Partnership Formed", content: "A new collaborative relationship has been formed with leading global institutions to address climate change." },
-      ja: { title: "グローバルな持続可能性パートナーシップを締結", content: "気候変動に対応するため、世界有数の機関と新たな協力関係を築きました。" }
+      ko: { title: "글로벌 지속 가능성 파트너십 체결", content: "기후 변화 대응을 위해 세계 유수의 기관들과 새로운 협력 관계를 맺었습니다.", url: "https://www.google.com/search?q=university+sustainability+partnership" },
+      en: { title: "Global Sustainability Partnership Formed", content: "A new collaborative relationship has been formed with leading global institutions to address climate change.", url: "https://www.google.com/search?q=university+sustainability+partnership" },
+      ja: { title: "グローバルな持続可能性パートナーシップを締結", content: "気候変動に対応するため、世界有数の機関と新たな協力関係を築きました。", url: "https://www.google.com/search?q=university+sustainability+partnership" }
     },
     {
-      ko: { title: "2026학년도 입학 장학금 확대 발표", content: "더 많은 우수 인재 유치를 위해 성적 우수 및 재정 지원 장학금을 대폭 늘립니다." },
-      en: { title: "2026 Admission Scholarships Expansion", content: "Scholarships for merit and financial need will be significantly increased to attract more talent." },
-      ja: { title: "2026年度入試奨学金の拡充を発表", content: "より多くの優秀な人材を誘致するため、成績優秀および財政支援奨学金を大幅に増やします。" }
-    },
-    {
-      ko: { title: "캠퍼스 현대화 프로젝트 완공", content: "학생들에게 최첨단 학습 환경을 제공하기 위한 캠퍼스 리노베이션이 성공적으로 마무리되었습니다." },
-      en: { title: "Campus Modernization Project Completed", content: "Campus renovations aimed at providing cutting-edge learning environments for students have been successfully finished." },
-      ja: { title: "キャンパス近代化プロジェクトが完了", content: "学生に最先端の学習環境を提供するためのキャンパスリノベーションが成功裏に終わりました。" }
+      ko: { title: "2026학년도 입학 장학금 확대 발표", content: "더 많은 우수 인재 유치를 위해 성적 우수 및 재정 지원 장학금을 대폭 늘립니다.", url: "https://www.google.com/search?q=university+scholarship+expansion" },
+      en: { title: "2026 Admission Scholarships Expansion", content: "Scholarships for merit and financial need will be significantly increased to attract more talent.", url: "https://www.google.com/search?q=university+scholarship+expansion" },
+      ja: { title: "2026年度入試奨学金の拡充を発表", content: "より多くの優秀な人材を誘致するため、成績優秀および財政支援奨学金を大幅に増やします。", url: "https://www.google.com/search?q=university+scholarship+expansion" }
     }
   ];
 
@@ -251,15 +249,12 @@ function generateUniversityData() {
       };
       fullData.push(uni);
     }
-    
-    // Add News
     const n1 = newsPool[Math.floor(Math.random() * newsPool.length)];
     let n2 = newsPool[Math.floor(Math.random() * newsPool.length)];
     while(n1 === n2) n2 = newsPool[Math.floor(Math.random() * newsPool.length)];
     uni.news = [n1, n2];
     uni.reputation = (Math.random() * 20 + 80).toFixed(1);
   }
-  
   return fullData.sort((a,b) => a.rank - b.rank);
 }
 
@@ -289,7 +284,6 @@ function handleRoute() {
   if (!hash || hash === "" || hash === "home") {
     $("#homeView").classList.add("active");
     $(`.nav-item[data-view="home"]`)?.classList.add("active");
-    updateMeta(translations[state.lang].app_title, translations[state.lang].app_desc);
     renderHome();
   } else if (hash.startsWith("uni/")) {
     const uniName = decodeURIComponent(hash.split("/")[1]);
@@ -337,21 +331,17 @@ function renderHome() {
   });
 
   $("#pageNow").textContent = state.filters.page;
-  const maxPage = Math.ceil(list.length / state.filters.pageSize) || 1;
-  $("#pageMax").textContent = maxPage;
+  $("#pageMax").textContent = Math.ceil(list.length / state.filters.pageSize) || 1;
   $("#compareCount").textContent = state.compareList.length;
   $("#btnCompare").style.display = state.compareList.length > 0 ? "block" : "none";
-  renderPodium();
+  renderPodium(state.filters.country);
 }
 
 function renderDetail(name) {
   const uni = state.raw.find(u => u.name === name);
   if (!uni) { location.hash = ""; return; }
-
   const dict = translations[state.lang];
-  updateMeta(`${uni.name} - ${dict.app_title}`, `Detailed profile of ${uni.name} in ${uni.country}.`);
-
-  $("#uniPageTitle").textContent = uni.name;
+  updateMeta(`${uni.name} - ${dict.app_title}`, `Profile of ${uni.name}.`);
   $("#uniPageName").textContent = uni.name;
   $("#uniPageRank").textContent = `#${uni.rank}`;
   $("#uniPageCountry").textContent = uni.country;
@@ -359,42 +349,29 @@ function renderDetail(name) {
   $("#uniPageAcceptance").textContent = uni.acceptance || "-";
   $("#uniPageStudents").textContent = (uni.students || 0).toLocaleString();
   $("#uniPageToefl").textContent = uni.toefl || "80+";
-  
-  // Set Description
-  $("#uniPageDesc").textContent = `${uni.name} is a leading global institution located in ${uni.country}. It boasts a ${uni.reputation}% academic reputation score and is highly ranked for its excellence in ${uni.focus === 'sci' ? 'Science & Technology' : uni.focus === 'bus' ? 'Business' : 'Humanities'}.`;
+  $("#uniPageDesc").textContent = `${uni.name} is a global leader located in ${uni.country}. Rated ${uni.reputation}% for reputation.`;
 
-  // Render News
   const newsContainer = $("#uniPageNews");
   newsContainer.innerHTML = (uni.news || []).map(n => `
     <div class="list-item">
-      <div>
+      <div style="width:100%;">
         <strong style="font-size:15px; color:var(--primary);">${n[state.lang].title}</strong>
-        <p style="margin:8px 0 0; font-size:13px; color:var(--muted); line-height:1.5;">${n[state.lang].content}</p>
+        <p style="margin:8px 0 12px; font-size:13px; color:var(--muted); line-height:1.5;">${n[state.lang].content}</p>
+        <a href="${n[state.lang].url}" target="_blank" class="btn sm primary">${dict.btn_read_more}</a>
       </div>
     </div>
   `).join("");
-
   renderChart(uni.name);
 }
 
 function renderInsights() {
   const container = $("#articleList");
-  container.innerHTML = ARTICLES.map(a => `
-    <div class="article-card" onclick="location.hash='article/${a.id}'">
-      <h3>${a.title}</h3>
-      <p>${a.excerpt}</p>
-    </div>
-  `).join("");
+  container.innerHTML = ARTICLES.map(a => `<div class="article-card" onclick="location.hash='article/${a.id}'"><h3>${a.title}</h3><p>${a.excerpt}</p></div>`).join("");
 }
 
 function renderArticle(id) {
   const art = ARTICLES.find(a => a.id === id);
-  if (!art) { location.hash = "insights"; return; }
-  
-  updateMeta(art.title, art.excerpt);
-  $("#articleTitle").textContent = art.title;
-  $("#articleMeta").textContent = `${art.author} | ${art.date}`;
-  $("#articleContent").innerHTML = art.content;
+  if (art) { $("#articleTitle").textContent = art.title; $("#articleContent").innerHTML = art.content; }
 }
 
 function renderDashboard() {
@@ -407,28 +384,19 @@ function renderDashboard() {
     div.innerHTML = `<span>${name}</span> <button class="btn sm" onclick="toggleCompare('${name.replace(/'/g, "\\'")}')">Remove</button>`;
     compList.appendChild(div);
   });
-
   const deadList = $("#dashDeadlineList");
   deadList.innerHTML = state.savedDeadlines.length === 0 ? `<p>${dict.msg_empty}</p>` : "";
   state.savedDeadlines.forEach(item => {
-    const dday = calculateDDay(item.date);
     const div = document.createElement("div");
     div.className = "list-item";
-    div.innerHTML = `
-      <div>
-        <strong>${item.name}</strong><br>
-        <small>${item.date} (${dict.dday_prefix} D-${dday})</small>
-      </div> 
-      <button class="btn sm" onclick="removeDeadline('${item.name.replace(/'/g, "\\'")}')">Remove</button>`;
+    div.innerHTML = `<div><strong>${item.name}</strong><br><small>${item.date} (D-${calculateDDay(item.date)})</small></div> <button class="btn sm" onclick="removeDeadline('${item.name.replace(/'/g, "\\'")}')">Remove</button>`;
     deadList.appendChild(div);
   });
 }
 
 function renderPolicies(type) {
   const dict = translations[state.lang];
-  const priv = $("#privacyContentText");
-  const terms = $("#termsContentText");
-  const about = $("#aboutContentText");
+  const priv = $("#privacyContentText"); const terms = $("#termsContentText"); const about = $("#aboutContentText");
   if (type === "privacy" && priv) priv.innerHTML = `<p>${dict.privacy_content}</p>`;
   if (type === "terms" && terms) terms.innerHTML = `<p>${dict.terms_content}</p>`;
   if (type === "about" && about) about.innerHTML = `<p>${dict.about_content}</p>`;
@@ -446,44 +414,22 @@ function applyFilters() {
 
 function toggleCompare(name) {
   const idx = state.compareList.indexOf(name);
-  const dict = translations[state.lang];
-  if (idx > -1) {
-    state.compareList.splice(idx, 1);
-    alert(dict.msg_removed_compare);
-  } else {
-    if (state.compareList.length < 4) {
-      state.compareList.push(name);
-      alert(dict.msg_added_compare);
-    } else {
-      alert(dict.msg_compare_limit);
-    }
-  }
-  saveState();
-  renderHome();
-  if (window.location.hash === "#dashboard") renderDashboard();
+  if (idx > -1) state.compareList.splice(idx, 1);
+  else if (state.compareList.length < 4) state.compareList.push(name);
+  saveState(); renderHome(); if (window.location.hash === "#dashboard") renderDashboard();
 }
 
 function removeDeadline(name) {
   state.savedDeadlines = state.savedDeadlines.filter(d => d.name !== name);
-  saveState();
-  renderDashboard();
+  saveState(); renderDashboard();
 }
 
 function saveDeadline() {
-  const name = $("#uniPageName").textContent;
-  const uni = state.raw.find(u => u.name === name);
+  const name = $("#uniPageName").textContent; const uni = state.raw.find(u => u.name === name);
   if (uni && !state.savedDeadlines.find(d => d.name === name)) {
     state.savedDeadlines.push({ name: uni.name, date: uni.deadline });
-    saveState();
-    alert(translations[state.lang].msg_saved_deadline);
+    saveState(); alert(translations[state.lang].msg_saved_deadline);
   }
-}
-
-function shareContent() {
-  const dict = translations[state.lang];
-  navigator.clipboard.writeText(window.location.href).then(() => {
-    alert(dict.msg_shared);
-  });
 }
 
 function calculateDDay(dateStr) {
@@ -492,162 +438,81 @@ function calculateDDay(dateStr) {
 }
 
 function renderChart(name) {
-  const canvas = $("#rankingChart");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  if (currentChart) currentChart.destroy();
-  const history = RANKING_HISTORY[name] || [Math.floor(Math.random()*10)+10, Math.floor(Math.random()*10)+8, Math.floor(Math.random()*10)+5, Math.floor(Math.random()*10)+2, Math.floor(Math.random()*10)+1];
+  const canvas = $("#rankingChart"); if (!canvas) return;
+  const ctx = canvas.getContext("2d"); if (currentChart) currentChart.destroy();
+  const history = RANKING_HISTORY[name] || [15, 14, 12, 11, 10];
   currentChart = new Chart(ctx, {
     type: 'line',
-    data: {
-      labels: ['2021', '2022', '2023', '2024', '2025'],
-      datasets: [{ label: 'Rank', data: history, borderColor: '#00dcff', fill: false }]
-    },
+    data: { labels: ['2021', '2022', '2023', '2024', '2025'], datasets: [{ label: 'Rank', data: history, borderColor: '#00dcff', fill: false }] },
     options: { scales: { y: { reverse: true, min: 1 } }, responsive: true, maintainAspectRatio: false }
   });
 }
 
-function renderPodium() {
-  const podium = $("#podium");
-  if (!podium) return;
-  const top3 = [...state.raw].slice(0,3);
+function renderPodium(country = "__ALL__") {
+  const podium = $("#podium"); if (!podium) return;
+  let list = country === "__ALL__" ? [...state.raw] : state.raw.filter(u => u.country === country);
+  const top3 = list.sort((a,b)=>a.rank - b.rank).slice(0,3);
   podium.innerHTML = top3.map(u => `
     <div class="podium-step" onclick="location.hash='uni/${encodeURIComponent(u.name)}'" style="cursor:pointer; text-align:center; padding:10px; background:var(--card2); border-radius:12px; border:1px solid var(--line); flex:1;">
-      <div style="font-size:24px;">${u.rank === 1 ? '🥇' : u.rank === 2 ? '🥈' : '🥉'}</div>
+      <div style="font-size:24px;">${u.rank === top3[0].rank ? '🥇' : u.rank === top3[1].rank ? '🥈' : '🥉'}</div>
       <div style="font-size:11px; font-weight:700;">${u.name.split('(')[0]}</div>
     </div>
   `).join("");
 }
 
 function openCompareModal() {
-  const modal = $("#compareModal");
-  const table = $("#compareTable");
-  const dict = translations[state.lang];
-  modal.classList.add("active");
-  $("#modalOverlay").classList.add("active");
+  const modal = $("#compareModal"); const table = $("#compareTable"); const dict = translations[state.lang];
+  modal.classList.add("active"); $("#modalOverlay").classList.add("active");
   const unis = state.compareList.map(name => state.raw.find(u => u.name === name));
-  let html = `<tr><th>${dict.th_rank}</th>${unis.map(u => `<th>${u.name.split('(')[0]}</th>`).join('')}</tr>`;
-  const rows = [
-    { l: dict.th_rank, k: "rank" }, 
-    { l: dict.label_tuition, k: "tuition" }, 
-    { l: dict.reputation_score, k: "reputation" }
-  ];
+  let html = `<tr><th>Metric</th>${unis.map(u => `<th>${u.name.split('(')[0]}</th>`).join('')}</tr>`;
+  const rows = [{ l: "Rank", k: "rank" }, { l: "Tuition", k: "tuition" }, { l: "Acceptance", k: "acceptance" }];
   rows.forEach(r => { html += `<tr><td>${r.l}</td>${unis.map(u => `<td>${u[r.k]}</td>`).join('')}</tr>`; });
   table.innerHTML = html;
 }
 
-// Event Listeners & Init
-window.addEventListener("hashchange", handleRoute);
-window.addEventListener("load", () => {
-  initFilters();
-  handleRoute();
-  setLanguage(state.lang);
-  buildCountries();
-  $("#langSelect").value = state.lang;
-});
-
-$("#langSelect").addEventListener("change", (e) => {
-  state.lang = e.target.value;
-  localStorage.setItem("lang", state.lang);
-  setLanguage(state.lang);
-  buildCountries(); // Rebuild country list with "All" translation
-  handleRoute();
-});
+function shareContent() {
+  navigator.clipboard.writeText(window.location.href).then(() => alert(translations[state.lang].msg_shared));
+}
 
 function initFilters() {
-  const years = $("#year");
-  years.innerHTML = `<option value="2025">2025</option>`;
-  const sort = $("#sort");
-  sort.innerHTML = `
-    <option value="rank_asc" data-i18n="sort_rank_asc">Rank</option>
-    <option value="name_asc" data-i18n="sort_name_asc">Name</option>
-  `;
-  const size = $("#pageSize");
-  size.innerHTML = `
-    <option value="25">25</option>
-    <option value="50">50</option>
-    <option value="100">100</option>
-    <option value="200">200</option>
-    <option value="500">500</option>
-  `;
-  size.value = state.filters.pageSize;
+  $("#year").innerHTML = `<option value="2025">2025</option>`;
+  $("#sort").innerHTML = `<option value="rank_asc">Rank</option><option value="name_asc">Name</option>`;
+  $("#pageSize").innerHTML = `<option value="25">25</option><option value="50" selected>50</option><option value="100">100</option><option value="500">500</option>`;
 }
 
 function setLanguage(lang) {
   const dict = translations[lang] || translations.en;
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.getAttribute("data-i18n");
-    if (dict[key]) el.textContent = dict[key];
-  });
+  document.querySelectorAll("[data-i18n]").forEach(el => { const key = el.getAttribute("data-i18n"); if (dict[key]) el.textContent = dict[key]; });
 }
 
 function buildCountries() {
   const countries = [...new Set(state.raw.map(u => u.country))].sort();
-  const sel = $("#country");
-  const dict = translations[state.lang];
+  const sel = $("#country"); const dict = translations[state.lang];
   sel.innerHTML = `<option value="__ALL__">${dict.opt_all}</option>`;
-  countries.forEach(c => {
-    const opt = document.createElement("option");
-    opt.value = c; opt.textContent = c;
-    sel.appendChild(opt);
-  });
+  countries.forEach(c => { const opt = document.createElement("option"); opt.value = c; opt.textContent = c; sel.appendChild(opt); });
 }
 
+window.addEventListener("hashchange", handleRoute);
+window.addEventListener("load", () => { initFilters(); handleRoute(); setLanguage(state.lang); buildCountries(); $("#langSelect").value = state.lang; });
+$("#langSelect").addEventListener("change", (e) => { state.lang = e.target.value; localStorage.setItem("lang", state.lang); setLanguage(state.lang); buildCountries(); handleRoute(); });
 $("#q").addEventListener("input", (e) => { state.filters.q = e.target.value; state.filters.page = 1; renderHome(); });
 $("#country").addEventListener("change", (e) => { state.filters.country = e.target.value; state.filters.page = 1; renderHome(); });
 $("#sort").addEventListener("change", (e) => { state.filters.sort = e.target.value; renderHome(); });
 $("#pageSize").addEventListener("change", (e) => { state.filters.pageSize = Number(e.target.value); state.filters.page = 1; renderHome(); });
-
 $("#prev").addEventListener("click", () => { if (state.filters.page > 1) { state.filters.page--; renderHome(); } });
-$("#next").addEventListener("click", () => {
-  const list = applyFilters();
-  if (state.filters.page < Math.ceil(list.length / state.filters.pageSize)) { state.filters.page++; renderHome(); }
-});
-
+$("#next").addEventListener("click", () => { const list = applyFilters(); if (state.filters.page < Math.ceil(list.length / state.filters.pageSize)) { state.filters.page++; renderHome(); } });
 $("#btnMatchMe").addEventListener("click", () => { $("#matchMeModal").classList.add("active"); $("#modalOverlay").classList.add("active"); });
 $("#btnSaveDeadline")?.addEventListener("click", saveDeadline);
 $("#btnShareUni")?.addEventListener("click", shareContent);
 $("#btnCompare").addEventListener("click", openCompareModal);
-
-document.querySelectorAll(".close-modal-btn").forEach(b => b.addEventListener("click", () => {
-  document.querySelectorAll(".modal-content").forEach(m => m.classList.remove("active"));
-  $("#modalOverlay").classList.remove("active");
-}));
-
+document.querySelectorAll(".close-modal-btn").forEach(b => b.addEventListener("click", () => { document.querySelectorAll(".modal-content").forEach(m => m.classList.remove("active")); $("#modalOverlay").classList.remove("active"); }));
 $("#btnRunMatch").addEventListener("click", () => {
-  const interest = $("#matchInterest").value;
-  const filtered = state.raw.filter(u => u.focus === interest).slice(0, 10);
-  const dict = translations[state.lang];
-  
-  $("#matchList").innerHTML = `<h3>${dict.match_result_title}</h3>` + filtered.map(u => `
-    <div class="list-item" onclick="location.hash='uni/${encodeURIComponent(u.name)}'" style="cursor:pointer;">
-      <span>${u.name}</span> <b>#${u.rank}</b>
-    </div>
-  `).join("");
-  
-  const shareDiv = document.createElement("div");
-  shareDiv.className = "share-card-mock";
-  shareDiv.innerHTML = `<h4>${dict.share_text}</h4><button class="btn sm primary" onclick="shareContent()">Share Link</button>`;
-  $("#matchList").appendChild(shareDiv);
-  
+  const interest = $("#matchInterest").value; const filtered = state.raw.filter(u => u.focus === interest).slice(0, 10);
+  $("#matchList").innerHTML = filtered.map(u => `<div class="list-item" onclick="location.hash='uni/${encodeURIComponent(u.name)}'"><span>${u.name}</span> <b>#${u.rank}</b></div>`).join("");
   $("#matchResults").style.display = "block";
 });
-
-function updateMeta(title, desc) {
-  document.title = title;
-  const metaDesc = $("#dynamicDesc");
-  if (metaDesc) metaDesc.setAttribute("content", desc);
-}
-
-const themeToggle = $("#themeToggle");
-const themeIcon = $("#themeIcon");
-function setTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem("theme", theme);
-  themeIcon.textContent = theme === "dark" ? "🌙" : "☀️";
-}
-themeToggle.addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
-  setTheme(currentTheme === "dark" ? "light" : "dark");
-});
+function updateMeta(title, desc) { document.title = title; const metaDesc = $("#dynamicDesc"); if (metaDesc) metaDesc.setAttribute("content", desc); }
+const themeToggle = $("#themeToggle"); const themeIcon = $("#themeIcon");
+function setTheme(theme) { document.documentElement.setAttribute("data-theme", theme); localStorage.setItem("theme", theme); themeIcon.textContent = theme === "dark" ? "🌙" : "☀️"; }
+themeToggle.addEventListener("click", () => { const currentTheme = document.documentElement.getAttribute("data-theme") || "dark"; setTheme(currentTheme === "dark" ? "light" : "dark"); });
 setTheme(localStorage.getItem("theme") || "dark");
