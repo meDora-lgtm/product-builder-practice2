@@ -30,8 +30,7 @@ const translations = {
     opt_all: "전체 국가",
     btn_back: "뒤로가기",
     detail_history: "학교 역사 및 주요 특징",
-    detail_career: "졸업 후 진로 및 평판",
-    detail_reviews: "학생 리뷰 및 평판",
+    detail_news: "최신 대학 뉴스",
     btn_compare_all: "선택 대학 비교 분석",
     msg_added_compare: "비교함에 추가되었습니다.",
     msg_removed_compare: "비교함에서 제거되었습니다.",
@@ -81,8 +80,7 @@ const translations = {
     opt_all: "All Countries",
     btn_back: "Back",
     detail_history: "History & Features",
-    detail_career: "Career & Reputation",
-    detail_reviews: "Student Reviews & Reputation",
+    detail_news: "Latest University News",
     btn_compare_all: "Compare Selected",
     msg_added_compare: "Added to comparison.",
     msg_removed_compare: "Removed from comparison.",
@@ -110,7 +108,7 @@ const translations = {
     nav_home: "ホーム",
     nav_insights: "留学インサイト",
     nav_dashboard: "マイダッシュボード",
-    filter_title: "データ分析条件",
+    filter_title: "데이터 분석 조건",
     label_search: "大学検索",
     podium_title: "TOP 3 殿堂入り",
     result_title: "照会結果",
@@ -132,14 +130,13 @@ const translations = {
     opt_all: "すべての国",
     btn_back: "戻る",
     detail_history: "大学の歴史と主な特徴",
-    detail_career: "卒業後の進路と評判",
-    detail_reviews: "学生レビューと評判",
+    detail_news: "最新の大学ニュース",
     btn_compare_all: "選択した大学を比較分析",
     msg_added_compare: "比較リストに追加されました。",
     msg_removed_compare: "比較リストから削除されました。",
     msg_compare_limit: "最大4校まで比較可能です。",
     msg_saved_deadline: "締切日がマイダッシュボードに保存されました。",
-    privacy_content: "World Uni Explorerは、ユーザーのプライバシーを大切にしています。本サイトはクッキーを通じてサービスを改善し、詳細はグーグルのポリシーに従います。",
+    privacy_content: "World Uni Explorerは、ユーザーのプライバシーを大切にしています。",
     terms_content: "本サービスのデータは参考用であり、正確な情報は各大学の公式発表を確認してください。",
     about_content: "World University Explorerは、世界中の学生や研究者に信頼できる大学データを提供するために設立されました。",
     btn_save_deadline: "締切日を保存",
@@ -181,7 +178,7 @@ const RANKING_HISTORY = {
 };
 
 /**
- * Data Generation: 1000 Universities with Reviews
+ * Data Generation: 1000 Universities with News
  */
 function generateUniversityData() {
   const baseData = [
@@ -204,12 +201,27 @@ function generateUniversityData() {
   const focuses = ["sci", "hum", "bus"];
   const suffixes = ["University", "Institute of Technology", "College", "State University", "National University"];
   
-  const reviewsPool = [
-    { ko: "최고의 연구 시설을 갖춘 대학입니다.", en: "Top-notch research facilities.", ja: "最高の研究施設を備えた大学です。" },
-    { ko: "교수진이 매우 열정적이고 지원이 풍부합니다.", en: "Faculty is very passionate and supportive.", ja: "教授陣が非常に熱心で、サポートが充実しています。" },
-    { ko: "글로벌 네트워크 형성에 최적의 장소입니다.", en: "Perfect place for global networking.", ja: "グローバルネットワーク形成に最適な場所です。" },
-    { ko: "학문적 분위기가 매우 엄격하지만 보람 있습니다.", en: "Rigorous academic environment but rewarding.", ja: "学問的な雰囲気は非常に厳しいですが、やりがいがあります。" },
-    { ko: "캠퍼스가 아름답고 학생 복지가 좋습니다.", en: "Beautiful campus and great student welfare.", ja: "キャンパスが美しく、学生の福利厚生が良いです。" }
+  const newsPool = [
+    {
+      ko: { title: "새로운 인공지능 연구 센터 개소", content: "본교는 혁신적인 AI 연구를 선도하기 위해 새로운 연구 센터를 설립했습니다." },
+      en: { title: "New AI Research Center Opens", content: "The university has established a new center to lead innovative AI research." },
+      ja: { title: "新しいAI研究センターが開設", content: "本校は革新的なAI研究をリードするため、新しい研究センターを設立しました。" }
+    },
+    {
+      ko: { title: "글로벌 지속 가능성 파트너십 체결", content: "기후 변화 대응을 위해 세계 유수의 기관들과 새로운 협력 관계를 맺었습니다." },
+      en: { title: "Global Sustainability Partnership Formed", content: "A new collaborative relationship has been formed with leading global institutions to address climate change." },
+      ja: { title: "グローバルな持続可能性パートナーシップを締結", content: "気候変動に対応するため、世界有数の機関と新たな協力関係を築きました。" }
+    },
+    {
+      ko: { title: "2026학년도 입학 장학금 확대 발표", content: "더 많은 우수 인재 유치를 위해 성적 우수 및 재정 지원 장학금을 대폭 늘립니다." },
+      en: { title: "2026 Admission Scholarships Expansion", content: "Scholarships for merit and financial need will be significantly increased to attract more talent." },
+      ja: { title: "2026年度入試奨学金の拡充を発表", content: "より多くの優秀な人材を誘致するため、成績優秀および財政支援奨学金を大幅に増やします。" }
+    },
+    {
+      ko: { title: "캠퍼스 현대화 프로젝트 완공", content: "학생들에게 최첨단 학습 환경을 제공하기 위한 캠퍼스 리노베이션이 성공적으로 마무리되었습니다." },
+      en: { title: "Campus Modernization Project Completed", content: "Campus renovations aimed at providing cutting-edge learning environments for students have been successfully finished." },
+      ja: { title: "キャンパス近代化プロジェクトが完了", content: "学生に最先端の学習環境を提供するためのキャンパスリノベーションが成功裏に終わりました。" }
+    }
   ];
 
   const fullData = [...baseData];
@@ -240,11 +252,11 @@ function generateUniversityData() {
       fullData.push(uni);
     }
     
-    // Add Reviews
-    const r1 = reviewsPool[Math.floor(Math.random() * reviewsPool.length)];
-    let r2 = reviewsPool[Math.floor(Math.random() * reviewsPool.length)];
-    while(r1 === r2) r2 = reviewsPool[Math.floor(Math.random() * reviewsPool.length)];
-    uni.reviews = [r1, r2];
+    // Add News
+    const n1 = newsPool[Math.floor(Math.random() * newsPool.length)];
+    let n2 = newsPool[Math.floor(Math.random() * newsPool.length)];
+    while(n1 === n2) n2 = newsPool[Math.floor(Math.random() * newsPool.length)];
+    uni.news = [n1, n2];
     uni.reputation = (Math.random() * 20 + 80).toFixed(1);
   }
   
@@ -310,7 +322,6 @@ function renderHome() {
 
   items.forEach(it => {
     const tr = document.createElement("tr");
-    const isCompared = state.compareList.includes(it.name);
     tr.innerHTML = `
       <td><span class="rank">#${it.rank}</span></td>
       <td><a href="#uni/${encodeURIComponent(it.name)}" style="font-weight:700; color:var(--primary);">${it.name}</a></td>
@@ -318,7 +329,7 @@ function renderHome() {
       <td>
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <b>${it.score}</b>
-          <button class="icon-btn" onclick="toggleCompare('${it.name.replace(/'/g, "\\'")}')">${isCompared ? '✅' : '➕'}</button>
+          <button class="icon-btn" onclick="toggleCompare('${it.name.replace(/'/g, "\\'")}')">${state.compareList.includes(it.name) ? '✅' : '➕'}</button>
         </div>
       </td>
     `;
@@ -352,13 +363,13 @@ function renderDetail(name) {
   // Set Description
   $("#uniPageDesc").textContent = `${uni.name} is a leading global institution located in ${uni.country}. It boasts a ${uni.reputation}% academic reputation score and is highly ranked for its excellence in ${uni.focus === 'sci' ? 'Science & Technology' : uni.focus === 'bus' ? 'Business' : 'Humanities'}.`;
 
-  // Render Reviews
-  const reviewsContainer = $("#uniPageReviews");
-  reviewsContainer.innerHTML = (uni.reviews || []).map(r => `
+  // Render News
+  const newsContainer = $("#uniPageNews");
+  newsContainer.innerHTML = (uni.news || []).map(n => `
     <div class="list-item">
       <div>
-        <p style="margin:0; font-size:14px;">"${r[state.lang]}"</p>
-        <div style="margin-top:5px; color:var(--primary); font-size:12px;">★ ★ ★ ★ ★</div>
+        <strong style="font-size:15px; color:var(--primary);">${n[state.lang].title}</strong>
+        <p style="margin:8px 0 0; font-size:13px; color:var(--muted); line-height:1.5;">${n[state.lang].content}</p>
       </div>
     </div>
   `).join("");
