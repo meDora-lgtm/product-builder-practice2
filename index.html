@@ -49,7 +49,7 @@
           <div class="logo">UNI</div>
           <div>
             <h1 data-i18n="app_title">World University Top 1000 Explorer</h1>
-            <p data-i18n="app_desc">연도 선택 · 검색 · 국가 필터 · 정렬 · 페이지로 세계 대학교 상위 1000개를 조회합니다</p>
+            <p data-i18n="app_desc">전 세계 상위 1000개 명문 대학교의 최신 순위와 성과 데이터를 심층 분석합니다.</p>
           </div>
         </div>
   
@@ -65,9 +65,9 @@
             </button>
           </div>
           <div style="width: 1px; height: 24px; background: var(--line); margin: 0 4px;"></div>
-          <button class="btn" id="btnReload" title="Reload Data" data-i18n="btn_reload">데이터 새로고침</button>
+          <button class="btn" id="btnReload" title="Reload Data" data-i18n="btn_reload">데이터 업데이트</button>
           <button class="btn" id="btnReset" title="Reset Filters" data-i18n="btn_reset">필터 초기화</button>
-          <button class="btn primary" id="btnApply" title="Apply Filters (Enter)" data-i18n="btn_apply">조회</button>
+          <button class="btn primary" id="btnApply" title="Apply Filters (Enter)" data-i18n="btn_apply">순위 조회</button>
         </div>
       </header>
   
@@ -75,14 +75,14 @@
         <!-- Filters -->
         <section class="panel">
           <div class="hd">
-            <strong data-i18n="filter_title">조회 조건</strong>
+            <strong data-i18n="filter_title">데이터 필터링</strong>
             <span style="color:var(--muted2); font-size:12px;">
               <span data-i18n="shortcut_enter">단축키 Enter 조회</span> · <span class="kbd">/</span> <span data-i18n="shortcut_search">검색 포커스</span>
             </span>
           </div>
           <div class="bd">
             <p class="hint" data-i18n="data_notice">
-              공개 CSV 데이터를 불러와서 보여주는 데모 페이지입니다. (Top 1000 표시는 선택한 연도 기준)
+              본 대시보드는 글로벌 대학 평가 기관의 공개 데이터를 기반으로 최적화된 분석 리포트를 제공합니다.
             </p>
   
             <div class="field">
@@ -297,6 +297,39 @@
           <p class="hint" data-i18n="about_desc" style="line-height: 1.6; margin-bottom: 0;">
             본 플랫폼은 전 세계 유명 대학교들의 학문적 성과와 글로벌 위상을 한눈에 파악하고, 교육 정보 조회를 수월하게 돕기 위해 구축된 전문 탐색 도구입니다.
           </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Insights Section -->
+    <div style="margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+      <section class="panel">
+        <div class="hd">
+          <strong data-i18n="guide_title">성공적인 대학 선택을 위한 가이드</strong>
+        </div>
+        <div class="bd" style="font-size: 13px; line-height: 1.6; color: var(--muted);">
+          <p style="margin-top: 0;">전 세계 수천 개의 대학교 중 자신에게 가장 적합한 교육 기관을 선택하는 것은 매우 중요한 결정입니다. 순위 데이터뿐만 아니라 다음 요소들을 종합적으로 고려해야 합니다:</p>
+          <ul style="padding-left: 20px; margin-bottom: 0;">
+            <li><strong>학문적 평판 (Academic Reputation):</strong> 전 세계 학자들의 평가를 통해 해당 대학의 연구 질과 교육 수준을 파악하세요.</li>
+            <li><strong>취업 역량 (Employer Reputation):</strong> 졸업생들에 대한 고용주들의 평가와 취업률 데이터를 확인하십시오.</li>
+            <li><strong>교원 대비 학생 비율:</strong> 개인별 맞춤 교육 환경이 조성되어 있는지 확인하는 지표입니다.</li>
+            <li><strong>국제화 지수:</strong> 다양한 문화적 배경 속에서 글로벌 네트워크를 형성할 수 있는 기회를 평가하세요.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="hd">
+          <strong data-i18n="methodology_title">랭킹 데이터 분석 방법론</strong>
+        </div>
+        <div class="bd" style="font-size: 13px; line-height: 1.6; color: var(--muted);">
+          <p style="margin-top: 0;">World Uni Explorer는 공신력 있는 글로벌 대학 평가 지표를 활용하여 데이터를 시각화합니다. 주요 분석 지표는 다음과 같습니다:</p>
+          <ul style="padding-left: 20px; margin-bottom: 0;">
+            <li>연구 논문 피인용 수 (Citations per Faculty)</li>
+            <li>외국인 교원 및 학생 비율 (International Ratio)</li>
+            <li>지속 가능성 지수 (Sustainability)</li>
+            <li>학문 분야별 전문성 분석</li>
+          </ul>
+          <p style="margin-top: 10px; font-style: italic;">* 모든 데이터는 매년 업데이트되며, 교육 트렌드 변화를 즉각적으로 반영합니다.</p>
         </div>
       </section>
     </div>
