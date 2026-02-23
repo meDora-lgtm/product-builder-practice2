@@ -43,7 +43,12 @@ const translations = {
     share_text: "나에게 딱 맞는 대학을 찾았어요!",
     msg_shared: "공유 링크가 클립보드에 복사되었습니다.",
     match_result_title: "당신을 위한 추천 대학",
-    dday_prefix: "지원 마감까지"
+    dday_prefix: "지원 마감까지",
+    sort_rank_asc: "순위 높은 순 ↑",
+    sort_name_asc: "이름 순 A-Z",
+    label_year: "연도",
+    label_sort: "정렬",
+    label_page: "표시 수량"
   },
   en: {
     app_title: "World University Explorer 2025",
@@ -81,12 +86,17 @@ const translations = {
     msg_saved_deadline: "Deadline saved to your dashboard.",
     privacy_content: "Your privacy is important to us. We use cookies to improve your experience.",
     terms_content: "Data provided is for informational purposes only. Please verify with official sources.",
-    about_content: "World University Explorer provides reliable university data to students and researchers worldwide. We go beyond rankings to provide practical study abroad strategies and in-depth school information.",
+    about_content: "World University Explorer provides reliable university data to students and researchers worldwide.",
     btn_save_deadline: "Save Deadline",
     share_text: "I found my perfect university match!",
     msg_shared: "Link copied to clipboard.",
     match_result_title: "Recommended for You",
-    dday_prefix: "Days left:"
+    dday_prefix: "Days left:",
+    sort_rank_asc: "Rank Asc ↑",
+    sort_name_asc: "Name A-Z",
+    label_year: "Year",
+    label_sort: "Sort",
+    label_page: "Per Page"
   }
 };
 
@@ -96,30 +106,12 @@ const ARTICLES = [
     title: "토플 90점으로 지원 가능한 해외 명문대 리스트",
     excerpt: "고득점 토플 성적이 없어도 도전할 수 있는 세계 100위권 명문 대학교들을 소개합니다.",
     content: `
-      <p>많은 학생들이 해외 명문대 진학을 꿈꾸지만, 토플 100점 이상의 고득점 장벽에 부딪히곤 합니다. 하지만 전략적으로 접근한다면 90점 수준의 점수로도 충분히 세계적인 교육을 제공하는 대학에 합격할 수 있습니다.</p>
-      <h3>1. 호주 멜버른 대학교 (University of Melbourne)</h3>
-      <p>호주 최고의 명문대로 꼽히는 멜버른 대학은 일부 전공의 경우 토플 79~90점 사이의 점수를 요구합니다. 특히 연구 중심의 학풍과 높은 취업률로 유명합니다.</p>
-      <h3>2. 영국 버밍엄 대학교 (University of Birmingham)</h3>
-      <p>러셀 그룹의 일원인 버밍엄 대학은 탄탄한 교육 커리큘럼을 자랑하며, 국제 학생들에게 비교적 유연한 영어 성적 기준을 제시합니다.</p>
-      <h3>3. 미국 주립 대학교들</h3>
-      <p>퍼듀 대학교, 위스콘신 대학교 등 상위권 주립대 중 상당수가 80~90점대의 점수로도 지원이 가능하며, 입학 후 영어 집중 과정을 통해 보완할 수 있는 기회를 제공합니다.</p>
+      <p>전략적으로 접근한다면 90점 수준의 점수로도 충분히 세계적인 대학에 합격할 수 있습니다.</p>
+      <h3>1. 호주 멜버른 대학교</h3>
+      <p>호주 최고의 명문대로 꼽히는 멜버른 대학은 일부 전공의 경우 토플 79~90점 사이의 점수를 요구합니다.</p>
     `,
     author: "World Uni Insights",
     date: "2026-02-24"
-  },
-  {
-    id: "scholarship-guide",
-    title: "미국 대학 장학금 100% 받는 방법 (Need-Blind vs Need-Aware)",
-    excerpt: "경제적 부담 없이 유학을 떠날 수 있는 재정 보조(Financial Aid) 시스템 완벽 가이드.",
-    content: `
-      <p>미국 대학의 학비는 전 세계에서 가장 비싼 편에 속하지만, 그만큼 장학금 제도도 매우 발달해 있습니다. 유학생도 받을 수 있는 재정 보조 시스템을 이해하는 것이 첫걸음입니다.</p>
-      <h3>Need-Blind 정책이란?</h3>
-      <p>학생의 재정 상태를 입학 심사에 전혀 반영하지 않는 정책입니다. 하버드, 예일, MIT 등 최상위권 대학들이 이 정책을 고수하며, 합격만 한다면 가족의 소득 수준에 따라 학비 전액을 지원받을 수 있습니다.</p>
-      <h3>CSS Profile 준비하기</h3>
-      <p>미국 대학 장학금을 신청하기 위해서는 연방 정부의 FAFSA 외에도 사립대들이 주로 사용하는 CSS Profile을 꼼꼼히 작성해야 합니다. 부모님의 자산과 소득을 입증하는 과정이 필수적입니다.</p>
-    `,
-    author: "Edu Finance Expert",
-    date: "2026-02-20"
   }
 ];
 
@@ -128,10 +120,7 @@ const RANKING_HISTORY = {
   "Harvard University": [3, 5, 5, 4, 4],
   "University of Oxford": [5, 2, 4, 3, 3],
   "Stanford University": [2, 3, 3, 5, 6],
-  "University of Melbourne": [41, 37, 33, 33, 13],
-  "Imperial College London": [8, 7, 6, 6, 2],
-  "Seoul National University (SNU)": [37, 36, 29, 41, 31],
-  "University of Tokyo": [24, 23, 23, 28, 32]
+  "University of Melbourne": [41, 37, 33, 33, 13]
 };
 
 const $ = (s) => document.querySelector(s);
@@ -162,14 +151,12 @@ function handleRoute() {
   const hash = window.location.hash.replace("#", "");
   const views = document.querySelectorAll(".view");
   const navItems = document.querySelectorAll(".nav-item");
-  
   views.forEach(v => v.classList.remove("active"));
   navItems.forEach(n => n.classList.remove("active"));
 
   if (!hash || hash === "" || hash === "home") {
     $("#homeView").classList.add("active");
     $(`.nav-item[data-view="home"]`)?.classList.add("active");
-    updateMeta("World University Explorer 2025", translations[state.lang].app_desc);
     renderHome();
   } else if (hash.startsWith("uni/")) {
     const uniName = decodeURIComponent(hash.split("/")[1]);
@@ -188,7 +175,7 @@ function handleRoute() {
     $(`.nav-item[data-view="dashboard"]`)?.classList.add("active");
     renderDashboard();
   } else if (hash === "privacy" || hash === "terms" || hash === "about") {
-    $(`#${hash}View`).classList.add("active");
+    $(`#${hash}View`)?.classList.add("active");
     renderPolicies(hash);
   }
 }
@@ -197,13 +184,11 @@ function renderHome() {
   const list = applyFilters();
   const tbody = $("#tbody");
   tbody.innerHTML = "";
-  
   const start = (state.filters.page - 1) * state.filters.pageSize;
   const items = list.slice(start, start + state.filters.pageSize);
 
   items.forEach(it => {
     const tr = document.createElement("tr");
-    const isCompared = state.compareList.includes(it.name);
     tr.innerHTML = `
       <td><span class="rank">#${it.rank}</span></td>
       <td><a href="#uni/${encodeURIComponent(it.name)}" style="font-weight:700; color:var(--primary);">${it.name}</a></td>
@@ -211,7 +196,7 @@ function renderHome() {
       <td>
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <b>${it.score}</b>
-          <button class="icon-btn" onclick="toggleCompare('${it.name.replace(/'/g, "\\'")}')">${isCompared ? '✅' : '➕'}</button>
+          <button class="icon-btn" onclick="toggleCompare('${it.name.replace(/'/g, "\\'")}')">${state.compareList.includes(it.name) ? '✅' : '➕'}</button>
         </div>
       </td>
     `;
@@ -227,11 +212,7 @@ function renderHome() {
 
 function renderDetail(name) {
   const uni = state.raw.find(u => u.name === name);
-  if (!uni) { location.hash = ""; return; }
-
-  updateMeta(`${uni.name} - Ranking & Admissions`, `Detailed profile of ${uni.name} in ${uni.country}.`);
-
-  $("#uniPageTitle").textContent = uni.name;
+  if (!uni) return;
   $("#uniPageName").textContent = uni.name;
   $("#uniPageRank").textContent = `#${uni.rank}`;
   $("#uniPageCountry").textContent = uni.country;
@@ -239,9 +220,6 @@ function renderDetail(name) {
   $("#uniPageAcceptance").textContent = uni.acceptance || "-";
   $("#uniPageStudents").textContent = (uni.students || 0).toLocaleString();
   $("#uniPageToefl").textContent = uni.toefl || "80+";
-  
-  $("#uniPageDesc").textContent = `${uni.name}은(는) ${uni.country}에 위치한 세계 최고의 명문 교육 기관 중 하나입니다. 독보적인 연구 성과와 우수한 교육 커리큘럼을 통해 글로벌 리더를 양성하고 있습니다. 본교는 수많은 노벨상 수상자와 국가 지도자들을 배출해왔으며, 매년 입학 경쟁률이 매우 높습니다.`;
-
   renderChart(uni.name);
 }
 
@@ -251,18 +229,14 @@ function renderInsights() {
     <div class="article-card" onclick="location.hash='article/${a.id}'">
       <h3>${a.title}</h3>
       <p>${a.excerpt}</p>
-      <div style="font-size:12px; color:var(--muted);">${a.author} | ${a.date}</div>
     </div>
   `).join("");
 }
 
 function renderArticle(id) {
   const art = ARTICLES.find(a => a.id === id);
-  if (!art) { location.hash = "insights"; return; }
-  
-  updateMeta(art.title, art.excerpt);
+  if (!art) return;
   $("#articleTitle").textContent = art.title;
-  $("#articleMeta").textContent = `${art.author} | ${art.date}`;
   $("#articleContent").innerHTML = art.content;
 }
 
@@ -280,15 +254,9 @@ function renderDashboard() {
   const deadList = $("#dashDeadlineList");
   deadList.innerHTML = state.savedDeadlines.length === 0 ? `<p>${dict.msg_empty}</p>` : "";
   state.savedDeadlines.forEach(item => {
-    const dday = calculateDDay(item.date);
     const div = document.createElement("div");
     div.className = "list-item";
-    div.innerHTML = `
-      <div>
-        <strong>${item.name}</strong><br>
-        <small>${item.date} (${dict.dday_prefix} D-${dday})</small>
-      </div> 
-      <button class="btn sm" onclick="removeDeadline('${item.name.replace(/'/g, "\\'")}')">Remove</button>`;
+    div.innerHTML = `<div><strong>${item.name}</strong><br><small>${item.date}</small></div> <button class="btn sm" onclick="removeDeadline('${item.name.replace(/'/g, "\\'")}')">Remove</button>`;
     deadList.appendChild(div);
   });
 }
@@ -308,24 +276,15 @@ function applyFilters() {
   const q = state.filters.q.toLowerCase();
   if (state.filters.country !== "__ALL__") list = list.filter(x => x.country === state.filters.country);
   if (q) list = list.filter(x => x.name.toLowerCase().includes(q) || x.country.toLowerCase().includes(q));
-  if (state.filters.sort === "rank_asc") list.sort((a,b)=>a.rank - b.rank);
+  if (state.filters.sort === "name_asc") list.sort((a,b)=>a.name.localeCompare(b.name));
+  else list.sort((a,b)=>a.rank - b.rank);
   return list;
 }
 
 function toggleCompare(name) {
   const idx = state.compareList.indexOf(name);
-  const dict = translations[state.lang];
-  if (idx > -1) {
-    state.compareList.splice(idx, 1);
-    alert(dict.msg_removed_compare);
-  } else {
-    if (state.compareList.length < 4) {
-      state.compareList.push(name);
-      alert(dict.msg_added_compare);
-    } else {
-      alert(dict.msg_compare_limit);
-    }
-  }
+  if (idx > -1) state.compareList.splice(idx, 1);
+  else if (state.compareList.length < 4) state.compareList.push(name);
   saveState();
   renderHome();
   if (window.location.hash === "#dashboard") renderDashboard();
@@ -340,25 +299,11 @@ function removeDeadline(name) {
 function saveDeadline() {
   const name = $("#uniPageName").textContent;
   const uni = state.raw.find(u => u.name === name);
-  if (!uni) return;
-  const dict = translations[state.lang];
-  if (!state.savedDeadlines.find(d => d.name === name)) {
+  if (uni && !state.savedDeadlines.find(d => d.name === name)) {
     state.savedDeadlines.push({ name: uni.name, date: uni.deadline });
     saveState();
-    alert(dict.msg_saved_deadline);
+    alert(translations[state.lang].msg_saved_deadline);
   }
-}
-
-function shareContent() {
-  const dict = translations[state.lang];
-  navigator.clipboard.writeText(window.location.href).then(() => {
-    alert(dict.msg_shared);
-  });
-}
-
-function calculateDDay(dateStr) {
-  const diff = new Date(dateStr) - new Date();
-  return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
 }
 
 function renderChart(name) {
@@ -366,30 +311,14 @@ function renderChart(name) {
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
   if (currentChart) currentChart.destroy();
-  
   const history = RANKING_HISTORY[name] || [10, 12, 11, 10, 10];
-  
   currentChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: ['2021', '2022', '2023', '2024', '2025'],
-      datasets: [{
-        label: 'World Rank',
-        data: history,
-        borderColor: '#00dcff',
-        backgroundColor: 'rgba(0, 220, 255, 0.1)',
-        tension: 0.3,
-        fill: true,
-        pointRadius: 5,
-        pointHoverRadius: 8
-      }]
+      datasets: [{ label: 'Rank', data: history, borderColor: '#00dcff', fill: false }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: { y: { reverse: true, min: 1 } },
-      plugins: { legend: { display: false } }
-    }
+    options: { scales: { y: { reverse: true, min: 1 } } }
   });
 }
 
@@ -398,9 +327,9 @@ function renderPodium() {
   if (!podium) return;
   const top3 = [...state.raw].sort((a,b)=>a.rank - b.rank).slice(0,3);
   podium.innerHTML = top3.map(u => `
-    <div class="podium-step" onclick="location.hash='uni/${encodeURIComponent(u.name)}'" style="cursor:pointer; text-align:center; padding:15px; background:var(--card2); border-radius:16px; border:1px solid var(--line); flex:1; transition:transform 0.2s;">
-      <div style="font-size:32px; margin-bottom:5px;">${u.rank === 1 ? '🥇' : u.rank === 2 ? '🥈' : '🥉'}</div>
-      <div style="font-size:12px; font-weight:800; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${u.name.split('(')[0]}</div>
+    <div class="podium-step" onclick="location.hash='uni/${encodeURIComponent(u.name)}'" style="cursor:pointer; text-align:center; padding:10px; background:var(--card2); border-radius:12px; border:1px solid var(--line); flex:1;">
+      <div style="font-size:24px;">${u.rank === 1 ? '🥇' : u.rank === 2 ? '🥈' : '🥉'}</div>
+      <div style="font-size:11px; font-weight:700;">${u.name.split('(')[0]}</div>
     </div>
   `).join("");
 }
@@ -410,36 +339,38 @@ function openCompareModal() {
   const table = $("#compareTable");
   modal.classList.add("active");
   $("#modalOverlay").classList.add("active");
-  
   const unis = state.compareList.map(name => state.raw.find(u => u.name === name));
   let html = `<tr><th>Metric</th>${unis.map(u => `<th>${u.name.split('(')[0]}</th>`).join('')}</tr>`;
-  const rows = [
-    { l: "Global Rank", k: "rank" },
-    { l: "Tuition (USD)", k: "tuition" },
-    { l: "Acceptance", k: "acceptance" },
-    { l: "Min. TOEFL", k: "toefl" }
-  ];
-  rows.forEach(r => {
-    html += `<tr><td>${r.l}</td>${unis.map(u => `<td>${u[r.k] || '-'}</td>`).join('')}</tr>`;
-  });
+  const rows = [{ l: "Rank", k: "rank" }, { l: "Tuition", k: "tuition" }, { l: "Acceptance", k: "acceptance" }];
+  rows.forEach(r => { html += `<tr><td>${r.l}</td>${unis.map(u => `<td>${u[r.k]}</td>`).join('')}</tr>`; });
   table.innerHTML = html;
 }
 
-// Event Listeners & Init
+function shareContent() {
+  navigator.clipboard.writeText(window.location.href).then(() => alert(translations[state.lang].msg_shared));
+}
+
+// Event Listeners
 window.addEventListener("hashchange", handleRoute);
 window.addEventListener("load", () => {
+  initFilters();
   handleRoute();
   setLanguage(state.lang);
   buildCountries();
   $("#langSelect").value = state.lang;
 });
 
-$("#langSelect").addEventListener("change", (e) => {
-  state.lang = e.target.value;
-  localStorage.setItem("lang", state.lang);
-  setLanguage(state.lang);
-  handleRoute();
-});
+function initFilters() {
+  const years = $("#year");
+  years.innerHTML = `<option value="2025">2025</option>`;
+  const sort = $("#sort");
+  sort.innerHTML = `
+    <option value="rank_asc" data-i18n="sort_rank_asc">순위 높은 순</option>
+    <option value="name_asc" data-i18n="sort_name_asc">이름 순</option>
+  `;
+  const size = $("#pageSize");
+  size.innerHTML = `<option value="25">25</option><option value="50" selected>50</option>`;
+}
 
 function setLanguage(lang) {
   const dict = translations[lang] || translations.en;
@@ -460,23 +391,12 @@ function buildCountries() {
   });
 }
 
-$("#q").addEventListener("input", (e) => {
-  state.filters.q = e.target.value;
-  state.filters.page = 1;
-  renderHome();
-});
+$("#q").addEventListener("input", (e) => { state.filters.q = e.target.value; renderHome(); });
+$("#country").addEventListener("change", (e) => { state.filters.country = e.target.value; renderHome(); });
+$("#sort").addEventListener("change", (e) => { state.filters.sort = e.target.value; renderHome(); });
+$("#pageSize").addEventListener("change", (e) => { state.filters.pageSize = Number(e.target.value); renderHome(); });
 
-$("#country").addEventListener("change", (e) => {
-  state.filters.country = e.target.value;
-  state.filters.page = 1;
-  renderHome();
-});
-
-$("#btnMatchMe").addEventListener("click", () => {
-  $("#matchMeModal").classList.add("active");
-  $("#modalOverlay").classList.add("active");
-});
-
+$("#btnMatchMe").addEventListener("click", () => { $("#matchMeModal").classList.add("active"); $("#modalOverlay").classList.add("active"); });
 $("#btnSaveDeadline")?.addEventListener("click", saveDeadline);
 $("#btnShareUni")?.addEventListener("click", shareContent);
 $("#btnCompare").addEventListener("click", openCompareModal);
@@ -489,29 +409,10 @@ document.querySelectorAll(".close-modal-btn").forEach(b => b.addEventListener("c
 $("#btnRunMatch").addEventListener("click", () => {
   const interest = $("#matchInterest").value;
   const filtered = state.raw.filter(u => u.focus === interest);
-  const dict = translations[state.lang];
-  
-  $("#matchList").innerHTML = `<h3>${dict.match_result_title}</h3>` + filtered.map(u => `
-    <div class="list-item" onclick="location.hash='uni/${encodeURIComponent(u.name)}'" style="cursor:pointer;">
-      <span>${u.name}</span> <b>#${u.rank}</b>
-    </div>
-  `).join("");
-  
-  const shareDiv = document.createElement("div");
-  shareDiv.className = "share-card-mock";
-  shareDiv.innerHTML = `<h4>${dict.share_text}</h4><button class="btn sm primary" onclick="shareContent()">Share Link</button>`;
-  $("#matchList").appendChild(shareDiv);
-  
+  $("#matchList").innerHTML = filtered.map(u => `<div class="list-item" onclick="location.hash='uni/${encodeURIComponent(u.name)}'"><span>${u.name}</span> <b>#${u.rank}</b></div>`).join("");
   $("#matchResults").style.display = "block";
 });
 
-function updateMeta(title, desc) {
-  document.title = title;
-  const metaDesc = $("#dynamicDesc");
-  if (metaDesc) metaDesc.setAttribute("content", desc);
-}
-
-// Dark/Light Theme
 const themeToggle = $("#themeToggle");
 const themeIcon = $("#themeIcon");
 function setTheme(theme) {
