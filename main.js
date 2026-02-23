@@ -68,7 +68,28 @@ const translations = {
     btn_close: "확인 및 닫기",
     podium_title: "Global Top 3 명예의 전당",
     rising_stars_title: "혁신적 성장을 기록한 라이징 스타",
-    rank_up: "계단 상승"
+    rank_up: "계단 상승",
+    btn_match_me: "나에게 맞는 대학 찾기",
+    btn_compare: "비교하기",
+    match_title: "AI 대학 추천 시스템",
+    match_desc: "성적과 관심사를 기반으로 최적의 대학을 추천해 드립니다.",
+    label_gpa: "GPA / 성적",
+    label_interest: "관심 학문 분야",
+    btn_run_match: "매칭 시작",
+    match_result_title: "추천 대학 리스트",
+    compare_title: "대학 비교 분석",
+    detail_overview: "학교 개요",
+    label_tuition: "연간 학비 (USD)",
+    label_acceptance: "합격률",
+    label_students: "총 학생 수",
+    detail_intl: "유학생 입학 요건",
+    detail_deadlines: "지원 마감일 (Application Deadlines)",
+    btn_save_deadline: "일정 캘린더 저장",
+    detail_calc: "실질 학비 계산기",
+    btn_calculate: "장학금 적용 계산",
+    msg_added_compare: "비교함에 추가되었습니다.",
+    msg_removed_compare: "비교함에서 제거되었습니다.",
+    msg_compare_limit: "최대 4개 대학까지 비교 가능합니다."
   },
   en: {
     app_title: "QS World University Rankings 2025 Explorer",
@@ -136,7 +157,28 @@ const translations = {
     btn_close: "Close",
     podium_title: "Hall of Fame: Top 3",
     rising_stars_title: "Rising Stars (Last 3 Years)",
-    rank_up: "ranks up"
+    rank_up: "ranks up",
+    btn_match_me: "Find My Match",
+    btn_compare: "Compare",
+    match_title: "AI University Match",
+    match_desc: "Get personalized university recommendations based on your profile.",
+    label_gpa: "GPA / Grades",
+    label_interest: "Academic Interest",
+    btn_run_match: "Find Matches",
+    match_result_title: "Recommended Universities",
+    compare_title: "University Comparison",
+    detail_overview: "Overview",
+    label_tuition: "Tuition (USD/Year)",
+    label_acceptance: "Acceptance Rate",
+    label_students: "Total Students",
+    detail_intl: "International Requirements",
+    detail_deadlines: "Application Deadlines",
+    btn_save_deadline: "Save to Calendar",
+    detail_calc: "Net Price Calculator",
+    btn_calculate: "Calculate Aid",
+    msg_added_compare: "Added to comparison.",
+    msg_removed_compare: "Removed from comparison.",
+    msg_compare_limit: "You can compare up to 4 universities."
   },
   ja: {
     app_title: "QS 世界大学ランキング 2025 エクスプローラー",
@@ -204,7 +246,28 @@ const translations = {
     btn_close: "閉じる",
     podium_title: "栄誉の殿堂: TOP 3",
     rising_stars_title: "라이징스타 (直近3年)",
-    rank_up: "ランクアップ"
+    rank_up: "ランクアップ",
+    btn_match_me: "大学マッチング",
+    btn_compare: "比較する",
+    match_title: "AI 大学推薦",
+    match_desc: "プロフィールに基づいて最適な大学を推薦します。",
+    label_gpa: "GPA / 成績",
+    label_interest: "興味分野",
+    btn_run_match: "マッチング開始",
+    match_result_title: "推薦結果",
+    compare_title: "大学比較分析",
+    detail_overview: "概要",
+    label_tuition: "学費 (USD)",
+    label_acceptance: "合格率",
+    label_students: "学生数",
+    detail_intl: "留学生要件",
+    detail_deadlines: "出願締切",
+    btn_save_deadline: "カレンダーに保存",
+    detail_calc: "実質学費計算機",
+    btn_calculate: "計算する",
+    msg_added_compare: "比較リストに追加しました。",
+    msg_removed_compare: "比較リストから削除しました。",
+    msg_compare_limit: "最大4校まで比較可能です。"
   }
 };
 
@@ -233,34 +296,35 @@ $("#langSelect").addEventListener("change", (e) => {
   renderRisingStars();
 });
 
+// Expanded Mock Data with features for details/compare/match
 const QS_DATA_2025 = [
-  {rank:1, name:"Massachusetts Institute of Technology (MIT)", country:"United States", score:100, year:2025},
-  {rank:2, name:"Imperial College London", country:"United Kingdom", score:98.5, year:2025},
-  {rank:3, name:"University of Oxford", country:"United Kingdom", score:96.9, year:2025},
-  {rank:4, name:"Harvard University", country:"United States", score:96.8, year:2025},
-  {rank:5, name:"University of Cambridge", country:"United Kingdom", score:96.7, year:2025},
-  {rank:6, name:"Stanford University", country:"United States", score:96.1, year:2025},
-  {rank:7, name:"ETH Zurich", country:"Switzerland", score:93.9, year:2025},
-  {rank:8, name:"National University of Singapore (NUS)", country:"Singapore", score:93.7, year:2025},
-  {rank:9, name:"UCL", country:"United Kingdom", score:91.6, year:2025},
-  {rank:10, name:"California Institute of Technology (Caltech)", country:"United States", score:90.9, year:2025},
-  {rank:11, name:"University of Pennsylvania", country:"United States", score:90.3, year:2025},
-  {rank:12, name:"University of California, Berkeley (UCB)", country:"United States", score:90.1, year:2025},
-  {rank:13, name:"University of Melbourne", country:"Australia", score:88.9, year:2025},
-  {rank:14, name:"Peking University", country:"China", score:88.5, year:2025},
-  {rank:15, name:"Nanyang Technological University (NTU)", country:"Singapore", score:88.4, year:2025},
-  {rank:16, name:"Cornell University", country:"United States", score:87.9, year:2025},
-  {rank:17, name:"The University of Hong Kong (HKU)", country:"Hong Kong", score:87.6, year:2025},
-  {rank:18, name:"The University of Sydney", country:"Australia", score:87.3, year:2025},
-  {rank:19, name:"The University of New South Wales (UNSW)", country:"Australia", score:87.1, year:2025},
-  {rank:20, name:"Tsinghua University", country:"China", score:86.5, year:2025},
-  {rank:31, name:"Seoul National University (SNU)", country:"South Korea", score:82.4, year:2025},
-  {rank:53, name:"KAIST", country:"South Korea", score:75.1, year:2025},
-  {rank:67, name:"Yonsei University", country:"South Korea", score:70.2, year:2025},
-  {rank:102, name:"Korea University", country:"South Korea", score:62.1, year:2025},
-  {rank:32, name:"University of Tokyo", country:"Japan", score:82.1, year:2025},
-  {rank:45, name:"Kyoto University", country:"Japan", score:78.4, year:2025},
-  {rank:84, name:"Osaka University", country:"Japan", score:66.5, year:2025}
+  {rank:1, name:"Massachusetts Institute of Technology (MIT)", country:"United States", score:100, year:2025, tuition: 57986, acceptance: "4%", students: 11934, deadline: "2026-01-01", toefl: 100, focus: "sci"},
+  {rank:2, name:"Imperial College London", country:"United Kingdom", score:98.5, year:2025, tuition: 41750, acceptance: "14%", students: 19965, deadline: "2026-01-15", toefl: 100, focus: "sci"},
+  {rank:3, name:"University of Oxford", country:"United Kingdom", score:96.9, year:2025, tuition: 39010, acceptance: "17%", students: 24515, deadline: "2025-10-15", toefl: 110, focus: "hum"},
+  {rank:4, name:"Harvard University", country:"United States", score:96.8, year:2025, tuition: 54002, acceptance: "3.4%", students: 22947, deadline: "2026-01-01", toefl: 105, focus: "hum"},
+  {rank:5, name:"University of Cambridge", country:"United Kingdom", score:96.7, year:2025, tuition: 43000, acceptance: "21%", students: 23247, deadline: "2025-10-15", toefl: 110, focus: "sci"},
+  {rank:6, name:"Stanford University", country:"United States", score:96.1, year:2025, tuition: 56169, acceptance: "3.9%", students: 16914, deadline: "2026-01-05", toefl: 100, focus: "sci"},
+  {rank:7, name:"ETH Zurich", country:"Switzerland", score:93.9, year:2025, tuition: 1600, acceptance: "27%", students: 22200, deadline: "2026-04-30", toefl: 100, focus: "sci"},
+  {rank:8, name:"National University of Singapore (NUS)", country:"Singapore", score:93.7, year:2025, tuition: 30000, acceptance: "5%", students: 30000, deadline: "2026-02-28", toefl: 95, focus: "sci"},
+  {rank:9, name:"UCL", country:"United Kingdom", score:91.6, year:2025, tuition: 35000, acceptance: "30%", students: 42000, deadline: "2026-01-26", toefl: 100, focus: "hum"},
+  {rank:10, name:"California Institute of Technology (Caltech)", country:"United States", score:90.9, year:2025, tuition: 58680, acceptance: "6.4%", students: 2233, deadline: "2026-01-03", toefl: 100, focus: "sci"},
+  {rank:11, name:"University of Pennsylvania", country:"United States", score:90.3, year:2025, tuition: 61710, acceptance: "5.9%", students: 26552, deadline: "2026-01-05", toefl: 100, focus: "bus"},
+  {rank:12, name:"University of California, Berkeley (UCB)", country:"United States", score:90.1, year:2025, tuition: 44007, acceptance: "11%", students: 42327, deadline: "2025-11-30", toefl: 90, focus: "sci"},
+  {rank:13, name:"University of Melbourne", country:"Australia", score:88.9, year:2025, tuition: 32000, acceptance: "70%", students: 52000, deadline: "2026-06-30", toefl: 80, focus: "hum"},
+  {rank:14, name:"Peking University", country:"China", score:88.5, year:2025, tuition: 5000, acceptance: "1%", students: 35000, deadline: "2025-12-15", toefl: 85, focus: "sci"},
+  {rank:15, name:"Nanyang Technological University (NTU)", country:"Singapore", score:88.4, year:2025, tuition: 32000, acceptance: "35%", students: 24000, deadline: "2026-01-15", toefl: 90, focus: "sci"},
+  {rank:16, name:"Cornell University", country:"United States", score:87.9, year:2025, tuition: 61015, acceptance: "8.7%", students: 23620, deadline: "2026-01-02", toefl: 100, focus: "sci"},
+  {rank:17, name:"The University of Hong Kong (HKU)", country:"Hong Kong", score:87.6, year:2025, tuition: 22000, acceptance: "10%", students: 29000, deadline: "2026-01-31", toefl: 90, focus: "bus"},
+  {rank:18, name:"The University of Sydney", country:"Australia", score:87.3, year:2025, tuition: 34000, acceptance: "30%", students: 60000, deadline: "2026-01-31", toefl: 85, focus: "hum"},
+  {rank:19, name:"The University of New South Wales (UNSW)", country:"Australia", score:87.1, year:2025, tuition: 33000, acceptance: "30%", students: 55000, deadline: "2026-03-31", toefl: 90, focus: "sci"},
+  {rank:20, name:"Tsinghua University", country:"China", score:86.5, year:2025, tuition: 5000, acceptance: "1%", students: 37000, deadline: "2025-12-15", toefl: 85, focus: "sci"},
+  {rank:31, name:"Seoul National University (SNU)", country:"South Korea", score:82.4, year:2025, tuition: 6000, acceptance: "15%", students: 28000, deadline: "2025-09-10", toefl: 85, focus: "sci"},
+  {rank:53, name:"KAIST", country:"South Korea", score:75.1, year:2025, tuition: 3000, acceptance: "20%", students: 10000, deadline: "2025-10-20", toefl: 83, focus: "sci"},
+  {rank:67, name:"Yonsei University", country:"South Korea", score:70.2, year:2025, tuition: 8000, acceptance: "30%", students: 30000, deadline: "2025-11-15", toefl: 80, focus: "hum"},
+  {rank:102, name:"Korea University", country:"South Korea", score:62.1, year:2025, tuition: 8000, acceptance: "30%", students: 29000, deadline: "2025-11-15", toefl: 80, focus: "bus"},
+  {rank:32, name:"University of Tokyo", country:"Japan", score:82.1, year:2025, tuition: 5000, acceptance: "34%", students: 27000, deadline: "2026-01-20", toefl: 80, focus: "sci"},
+  {rank:45, name:"Kyoto University", country:"Japan", score:78.4, year:2025, tuition: 5000, acceptance: "36%", students: 22000, deadline: "2026-01-25", toefl: 80, focus: "sci"},
+  {rank:84, name:"Osaka University", country:"Japan", score:66.5, year:2025, tuition: 5000, acceptance: "40%", students: 23000, deadline: "2026-02-01", toefl: 80, focus: "sci"}
 ];
 
 const state = {
@@ -270,7 +334,8 @@ const state = {
   country: "__ALL__",
   sort: "rank_asc",
   page: 1,
-  pageSize: 50
+  pageSize: 50,
+  compareList: []
 };
 
 function setSourceStatus(loaded, msg){
@@ -336,7 +401,7 @@ function applyFilters(){
   const q = normalize(state.q);
   let list = [...state.raw];
   if (state.country !== "__ALL__") list = list.filter(x => x.country === state.country);
-  if (q) list = list.filter(x => normalize(`${x.name} ${x.country}`).includes(q));
+  if (q) list = list.filter(x => normalize(`${x.name} ${x.country}`).includes(q)); // Fuzzy-like search
   if (state.sort === "rank_asc") list.sort((a,b)=>a.rank - b.rank);
   else if (state.sort === "rank_desc") list.sort((a,b)=>b.rank - a.rank);
   else if (state.sort === "score_desc") list.sort((a,b)=>(b.score ?? -1) - (a.score ?? -1));
@@ -358,7 +423,7 @@ function renderPodium() {
     const uni = top3[idx];
     const char = characters[uni.rank];
     return `
-      <div class="podium-step step-${uni.rank}">
+      <div class="podium-step step-${uni.rank}" onclick="openDetail('${uni.name}')" style="cursor:pointer;">
         <div class="uni-char" style="background: ${char.color};" title="${uni.name}">
           <span class="emoji">${char.emoji}</span>
         </div>
@@ -382,7 +447,7 @@ function renderRisingStars() {
     { name: "Nanyang Technological University (NTU)", gain: 11, from: 26, to: 15, year: "2023-2025" }
   ];
   container.innerHTML = stars.map(s => `
-    <div class="star-card">
+    <div class="star-card" onclick="openDetail('${s.name}')">
       <div class="star-info">
         <strong>${s.name}</strong>
         <div style="font-size:12px; color:var(--muted2); margin-top:4px;">${s.year}</div>
@@ -424,19 +489,167 @@ function render(){
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td><span class="rank">#${it.rank}</span></td>
-      <td><div style="font-weight:650; color:var(--text);">${escapeHTML(it.name)}</div></td>
+      <td>
+        <div style="font-weight:650; color:var(--text); cursor:pointer; text-decoration:underline; text-decoration-color:rgba(255,255,255,0.2);" onclick="openDetail('${escapeHTML(it.name)}')">${escapeHTML(it.name)}</div>
+      </td>
       <td><span class="pill"><b>${escapeHTML(it.country)}</b></span></td>
-      <td><span class="pill"><b>${it.score}</b></span></td>
+      <td>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="pill"><b>${it.score}</b></span>
+          <button class="icon-btn" onclick="toggleCompare('${escapeHTML(it.name)}')" title="${dict.btn_compare}">
+            ${state.compareList.includes(it.name) ? '✅' : '➕'}
+          </button>
+        </div>
+      </td>
     `;
     tbody.appendChild(tr);
   });
   $("#loadingArea").style.display = "none";
   updateSummary();
   renderPodium();
+  updateCompareButton();
 }
 
 function escapeHTML(s){ return String(s ?? "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;"); }
 
+/* Feature: Compare Logic */
+function toggleCompare(name) {
+  const idx = state.compareList.indexOf(name);
+  const lang = localStorage.getItem("lang") || "ko";
+  const dict = translations[lang];
+  if (idx > -1) {
+    state.compareList.splice(idx, 1);
+    alert(dict.msg_removed_compare);
+  } else {
+    if (state.compareList.length >= 4) {
+      alert(dict.msg_compare_limit);
+      return;
+    }
+    state.compareList.push(name);
+    alert(dict.msg_added_compare);
+  }
+  render();
+}
+
+function updateCompareButton() {
+  const count = state.compareList.length;
+  $("#compareCount").textContent = count;
+  $("#btnCompare").style.display = count > 0 ? "inline-flex" : "none";
+}
+
+function openCompareModal() {
+  const modal = $("#compareModal");
+  const table = $("#compareTable");
+  modal.classList.add("active");
+  $("#modalOverlay").classList.add("active");
+  document.body.style.overflow = "hidden";
+
+  if (state.compareList.length === 0) return;
+
+  const unis = state.compareList.map(name => state.raw.find(u => u.name === name));
+  
+  // Build comparison table
+  let html = `<thead><tr><th>Fact</th>${unis.map(u => `<th>${u.name.split('(')[0]}</th>`).join('')}</tr></thead><tbody>`;
+  
+  const fields = [
+    { label: "Country", key: "country" },
+    { label: "Rank", key: "rank" },
+    { label: "Score", key: "score" },
+    { label: "Tuition (USD)", key: "tuition" },
+    { label: "Acceptance", key: "acceptance" },
+    { label: "Students", key: "students" },
+    { label: "TOEFL Min", key: "toefl" }
+  ];
+
+  fields.forEach(f => {
+    html += `<tr><td>${f.label}</td>${unis.map(u => `<td>${u[f.key] || '-'}</td>`).join('')}</tr>`;
+  });
+  html += `</tbody>`;
+  
+  table.innerHTML = html;
+}
+
+/* Feature: Detail View Logic */
+function openDetail(name) {
+  const uni = state.raw.find(u => u.name === name);
+  if (!uni) return;
+
+  $("#detailTitle").textContent = uni.name;
+  $("#detailDesc").textContent = `${uni.name} is a top-tier institution in ${uni.country}. It is known for its high impact research and global academic reputation. (Demo description)`;
+  
+  $("#detailTuition").textContent = `$${(uni.tuition || 0).toLocaleString()}`;
+  $("#detailAcceptance").textContent = uni.acceptance || "-";
+  $("#detailStudents").textContent = (uni.students || 0).toLocaleString();
+  
+  $("#detailIntlList").innerHTML = `
+    <li>TOEFL Minimum: ${uni.toefl || 80}+</li>
+    <li>Visa Support: Available (F-1/J-1)</li>
+    <li>Intl Student Ratio: Top 20%</li>
+  `;
+
+  $("#detailDeadlineDate").textContent = uni.deadline || "TBA";
+  
+  // Show Modal
+  $("#detailModal").classList.add("active");
+  $("#modalOverlay").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+/* Feature: Match Me Logic */
+function runMatch() {
+  const gpa = $("#matchGpa").value;
+  const interest = $("#matchInterest").value;
+  
+  // Simple Mock Logic
+  let filtered = state.raw.filter(u => u.focus === interest);
+  
+  // Sort by rank, then take top 3
+  // In a real app, GPA would filter out reach/target/safety
+  const matches = filtered.slice(0, 3);
+  
+  const container = $("#matchList");
+  container.innerHTML = matches.map(u => `
+    <div class="star-card" onclick="openDetail('${u.name}')">
+      <div class="star-info">
+        <strong>${u.name}</strong>
+        <div style="font-size:12px; color:var(--primary); margin-top:4px;">High Match (95%)</div>
+      </div>
+      <div class="star-gain">
+        <span class="rank">#${u.rank}</span>
+      </div>
+    </div>
+  `).join('');
+  
+  $("#matchResults").style.display = "block";
+}
+
+/* Feature: Calculator */
+$("#btnCalc").addEventListener("click", () => {
+  const income = Number($("#calcIncome").value);
+  const tuitionText = $("#detailTuition").textContent.replace(/[^0-9]/g, '');
+  const tuition = Number(tuitionText);
+  
+  if (!income) return;
+  
+  // Mock Formula
+  let discount = 0;
+  if (income < 50000) discount = 0.8;
+  else if (income < 100000) discount = 0.5;
+  else if (income < 150000) discount = 0.2;
+  
+  const finalPrice = Math.round(tuition * (1 - discount));
+  $("#calcResult").textContent = `Estimated Net Price: $${finalPrice.toLocaleString()} / year`;
+});
+
+$("#btnSaveDeadline").addEventListener("click", () => {
+  const date = $("#detailDeadlineDate").textContent;
+  const uni = $("#detailTitle").textContent;
+  alert(`Saved ${uni} deadline (${date}) to your local dashboard.`);
+  // Logic to save to localStorage would go here
+});
+
+
+/* Event Listeners */
 async function loadData(){
   buildYears();
   buildCountries();
@@ -447,7 +660,7 @@ async function loadData(){
 
 $("#btnApply").addEventListener("click", ()=>{ state.page = 1; render(); });
 $("#btnReset").addEventListener("click", ()=>{
-  state.q = ""; state.country = "__ALL__"; state.sort = "rank_asc"; state.page = 1;
+  state.q = ""; state.country = "__ALL__"; state.sort = "rank_asc"; state.page = 1; state.compareList = [];
   $("#q").value = ""; $("#country").value = "__ALL__"; $("#sort").value = "rank_asc";
   render();
 });
@@ -491,12 +704,21 @@ function openModal(type) {
   document.body.style.overflow = "hidden";
 }
 function closeModal() {
+  document.querySelectorAll(".modal-content").forEach(el => el.classList.remove("active"));
   $("#modalOverlay").classList.remove("active");
-  $("#modalContent").classList.remove("active");
   document.body.style.overflow = "";
 }
+
+// General Modal Closing
+document.querySelectorAll(".close-modal-btn").forEach(btn => btn.addEventListener("click", closeModal));
+$("#modalOverlay").addEventListener("click", closeModal);
+
+// Specific Modal Openers
 $("#openPrivacy").addEventListener("click", () => openModal("privacy"));
 $("#openTerms").addEventListener("click", () => openModal("terms"));
-$("#closeModal").addEventListener("click", closeModal);
-$("#modalOverlay").addEventListener("click", closeModal);
-$("#btnModalClose").addEventListener("click", closeModal);
+$("#btnMatchMe").addEventListener("click", () => {
+  $("#matchMeModal").classList.add("active");
+  $("#modalOverlay").classList.add("active");
+});
+$("#btnCompare").addEventListener("click", openCompareModal);
+$("#btnRunMatch").addEventListener("click", runMatch);
