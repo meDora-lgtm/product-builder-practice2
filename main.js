@@ -4,7 +4,7 @@
 const translations = {
   ko: {
     app_title: "World University Explorer 2025",
-    app_desc: "전 세계 상위 1000개 명문 대학교의 최신 순위와 성과 데이터를 심층 분석합니다.",
+    app_desc: "글로벌 명문 대학교 데이터 분석 및 입학 전략 인사이트 플랫폼",
     nav_home: "홈",
     nav_insights: "유학 인사이트",
     nav_dashboard: "내 보관함",
@@ -31,6 +31,7 @@ const translations = {
     btn_back: "뒤로가기",
     detail_history: "학교 역사 및 주요 특징",
     detail_career: "졸업 후 진로 및 평판",
+    detail_reviews: "학생 리뷰 및 평판",
     btn_compare_all: "선택 대학 비교 분석",
     msg_added_compare: "비교함에 추가되었습니다.",
     msg_removed_compare: "비교함에서 제거되었습니다.",
@@ -48,7 +49,9 @@ const translations = {
     sort_name_asc: "이름 순 A-Z",
     label_year: "연도",
     label_sort: "정렬",
-    label_page: "표시 수량"
+    label_page: "표시 수량",
+    review_score: "평점",
+    reputation_score: "평판 지수"
   },
   en: {
     app_title: "World University Explorer 2025",
@@ -79,6 +82,7 @@ const translations = {
     btn_back: "Back",
     detail_history: "History & Features",
     detail_career: "Career & Reputation",
+    detail_reviews: "Student Reviews & Reputation",
     btn_compare_all: "Compare Selected",
     msg_added_compare: "Added to comparison.",
     msg_removed_compare: "Removed from comparison.",
@@ -96,40 +100,75 @@ const translations = {
     sort_name_asc: "Name A-Z",
     label_year: "Year",
     label_sort: "Sort",
-    label_page: "Per Page"
+    label_page: "Per Page",
+    review_score: "Score",
+    reputation_score: "Reputation"
+  },
+  ja: {
+    app_title: "世界大学エクスプローラー 2025",
+    app_desc: "グローバル名門大学のデータ分析と入学戦略インサイトプラットフォーム",
+    nav_home: "ホーム",
+    nav_insights: "留学インサイト",
+    nav_dashboard: "マイダッシュボード",
+    filter_title: "データ分析条件",
+    label_search: "大学検索",
+    podium_title: "TOP 3 殿堂入り",
+    result_title: "照会結果",
+    btn_compare: "比較する",
+    dash_compare: "比較ボックス",
+    dash_deadline: "出願締切スケジュール",
+    btn_match_me: "AI 大学マッチング",
+    policy_privacy: "プライバシーポリシー",
+    policy_terms: "利用規約",
+    about_title: "サイト紹介",
+    msg_empty: "保存された項目がありません。",
+    btn_run_match: "分析開始",
+    match_title: "AI 大学推薦",
+    label_interest: "興味分野",
+    th_rank: "順位",
+    th_uni: "大学名",
+    th_country: "国",
+    th_score: "スコア",
+    opt_all: "すべての国",
+    btn_back: "戻る",
+    detail_history: "大学の歴史と主な特徴",
+    detail_career: "卒業後の進路と評判",
+    detail_reviews: "学生レビューと評判",
+    btn_compare_all: "選択した大学を比較分析",
+    msg_added_compare: "比較リストに追加されました。",
+    msg_removed_compare: "比較リストから削除されました。",
+    msg_compare_limit: "最大4校まで比較可能です。",
+    msg_saved_deadline: "締切日がマイダッシュボードに保存されました。",
+    privacy_content: "World Uni Explorerは、ユーザーのプライバシーを大切にしています。本サイトはクッキーを通じてサービスを改善し、詳細はグーグルのポリシーに従います。",
+    terms_content: "本サービスのデータは参考用であり、正確な情報は各大学の公式発表を確認してください。",
+    about_content: "World University Explorerは、世界中の学生や研究者に信頼できる大学データを提供するために設立されました。",
+    btn_save_deadline: "締切日を保存",
+    share_text: "自分にぴったりの大学を見つけました！",
+    msg_shared: "共有リンクがクリップボードにコピーされました。",
+    match_result_title: "あなたへのオススメ大学",
+    dday_prefix: "出願締切まで",
+    sort_rank_asc: "順位が高い順 ↑",
+    sort_name_asc: "名前順 A-Z",
+    label_year: "年度",
+    label_sort: "並び替え",
+    label_page: "表示件数",
+    review_score: "評価",
+    reputation_score: "評判指数"
   }
 };
 
 const ARTICLES = [
   {
     id: "toefl-90-schools",
-    title: "토플 90점으로 지원 가능한 해외 명문대 리스트",
+    title: "토플 90점으로 지원 가능한 해외 명문대 리스트 / Schools for TOEFL 90 / TOEFL 90点での留学",
     excerpt: "고득점 토플 성적이 없어도 도전할 수 있는 세계 100위권 명문 대학교들을 소개합니다.",
     content: `
-      <p>많은 학생들이 해외 명문대 진학을 꿈꾸지만, 토플 100점 이상의 고득점 장벽에 부딪히곤 합니다. 하지만 전략적으로 접근한다면 90점 수준의 점수로도 충분히 세계적인 교육을 제공하는 대학에 합격할 수 있습니다.</p>
+      <p>전략적으로 접근한다면 90점 수준의 점수로도 충분히 세계적인 대학에 합격할 수 있습니다.</p>
       <h3>1. 호주 멜버른 대학교 (University of Melbourne)</h3>
-      <p>호주 최고의 명문대로 꼽히는 멜버른 대학은 일부 전공의 경우 토플 79~90점 사이의 점수를 요구합니다. 특히 연구 중심의 학풍과 높은 취업률로 유명합니다.</p>
-      <h3>2. 영국 버밍엄 대학교 (University of Birmingham)</h3>
-      <p>러셀 그룹의 일원인 버밍엄 대학은 탄탄한 교육 커리큘럼을 자랑하며, 국제 학생들에게 비교적 유연한 영어 성적 기준을 제시합니다.</p>
-      <h3>3. 미국 주립 대학교들</h3>
-      <p>퍼듀 대학교, 위스콘신 대학교 등 상위권 주립대 중 상당수가 80~90점대의 점수로도 지원이 가능하며, 입학 후 영어 집중 과정을 통해 보완할 수 있는 기회를 제공합니다.</p>
+      <p>호주 최고의 명문대로 꼽히는 멜버른 대학은 일부 전공의 경우 토플 79~90점 사이의 점수를 요구합니다.</p>
     `,
     author: "World Uni Insights",
     date: "2026-02-24"
-  },
-  {
-    id: "scholarship-guide",
-    title: "미국 대학 장학금 100% 받는 방법 (Need-Blind vs Need-Aware)",
-    excerpt: "경제적 부담 없이 유학을 떠날 수 있는 재정 보조(Financial Aid) 시스템 완벽 가이드.",
-    content: `
-      <p>미국 대학의 학비는 전 세계에서 가장 비싼 편에 속하지만, 그만큼 장학금 제도도 매우 발달해 있습니다. 유학생도 받을 수 있는 재정 보조 시스템을 이해하는 것이 첫걸음입니다.</p>
-      <h3>Need-Blind 정책이란?</h3>
-      <p>학생의 재정 상태를 입학 심사에 전혀 반영하지 않는 정책입니다. 하버드, 예일, MIT 등 최상위권 대학들이 이 정책을 고수하며, 합격만 한다면 가족의 소득 수준에 따라 학비 전액을 지원받을 수 있습니다.</p>
-      <h3>CSS Profile 준비하기</h3>
-      <p>미국 대학 장학금을 신청하기 위해서는 연방 정부의 FAFSA 외에도 사립대들이 주로 사용하는 CSS Profile을 꼼꼼히 작성해야 합니다. 부모님의 자산과 소득을 입증하는 과정이 필수적입니다.</p>
-    `,
-    author: "Edu Finance Expert",
-    date: "2026-02-20"
   }
 ];
 
@@ -138,21 +177,18 @@ const RANKING_HISTORY = {
   "Harvard University": [3, 5, 5, 4, 4],
   "University of Oxford": [5, 2, 4, 3, 3],
   "Stanford University": [2, 3, 3, 5, 6],
-  "University of Melbourne": [41, 37, 33, 33, 13],
-  "Imperial College London": [8, 7, 6, 6, 2],
-  "Seoul National University (SNU)": [37, 36, 29, 41, 31],
-  "University of Tokyo": [24, 23, 23, 28, 32]
+  "University of Melbourne": [41, 37, 33, 33, 13]
 };
 
 /**
- * Data Generation: 1000 Universities
+ * Data Generation: 1000 Universities with Reviews
  */
 function generateUniversityData() {
   const baseData = [
-    {rank:1, name:"Massachusetts Institute of Technology (MIT)", country:"United States", score:100, tuition: 57986, acceptance: "4%", students: 11934, deadline: "2026-01-01", toefl: 100, focus: "sci"},
-    {rank:2, name:"Imperial College London", country:"United Kingdom", score:98.5, tuition: 41750, acceptance: "14%", students: 19965, deadline: "2026-01-15", toefl: 100, focus: "sci"},
-    {rank:3, name:"University of Oxford", country:"United Kingdom", score:96.9, tuition: 39010, acceptance: "17%", students: 24515, deadline: "2025-10-15", toefl: 110, focus: "hum"},
-    {rank:4, name:"Harvard University", country:"United States", score:96.8, tuition: 54002, acceptance: "3.4%", students: 22947, deadline: "2026-01-01", toefl: 105, focus: "hum"},
+    {rank:1, name:"Massachusetts Institute of Technology (MIT)", country:"United States", score:100, tuition: 59750, acceptance: "4.1%", students: 11934, deadline: "2026-01-01", toefl: 100, focus: "sci"},
+    {rank:2, name:"Imperial College London", country:"United Kingdom", score:98.5, tuition: 41750, acceptance: "14.3%", students: 19965, deadline: "2026-01-15", toefl: 100, focus: "sci"},
+    {rank:3, name:"University of Oxford", country:"United Kingdom", score:96.9, tuition: 39010, acceptance: "17.1%", students: 24515, deadline: "2025-10-15", toefl: 110, focus: "hum"},
+    {rank:4, name:"Harvard University", country:"United States", score:96.8, tuition: 54269, acceptance: "3.4%", students: 22947, deadline: "2026-01-01", toefl: 105, focus: "hum"},
     {rank:5, name:"University of Cambridge", country:"United Kingdom", score:96.7, tuition: 43000, acceptance: "21%", students: 23247, deadline: "2025-10-15", toefl: 110, focus: "sci"},
     {rank:6, name:"Stanford University", country:"United States", score:96.1, tuition: 56169, acceptance: "3.9%", students: 16914, deadline: "2026-01-05", toefl: 100, focus: "sci"},
     {rank:7, name:"ETH Zurich", country:"Switzerland", score:93.9, tuition: 1600, acceptance: "27%", students: 22200, deadline: "2026-04-30", toefl: 100, focus: "sci"},
@@ -168,30 +204,48 @@ function generateUniversityData() {
   const focuses = ["sci", "hum", "bus"];
   const suffixes = ["University", "Institute of Technology", "College", "State University", "National University"];
   
+  const reviewsPool = [
+    { ko: "최고의 연구 시설을 갖춘 대학입니다.", en: "Top-notch research facilities.", ja: "最高の研究施設を備えた大学です。" },
+    { ko: "교수진이 매우 열정적이고 지원이 풍부합니다.", en: "Faculty is very passionate and supportive.", ja: "教授陣が非常に熱心で、サポートが充実しています。" },
+    { ko: "글로벌 네트워크 형성에 최적의 장소입니다.", en: "Perfect place for global networking.", ja: "グローバルネットワーク形成に最適な場所です。" },
+    { ko: "학문적 분위기가 매우 엄격하지만 보람 있습니다.", en: "Rigorous academic environment but rewarding.", ja: "学問的な雰囲気は非常に厳しいですが、やりがいがあります。" },
+    { ko: "캠퍼스가 아름답고 학생 복지가 좋습니다.", en: "Beautiful campus and great student welfare.", ja: "キャンパスが美しく、学生の福利厚生が良いです。" }
+  ];
+
   const fullData = [...baseData];
   const existingRanks = new Set(baseData.map(u => u.rank));
 
   for (let i = 1; i <= 1000; i++) {
-    if (existingRanks.has(i)) continue;
+    let uni;
+    if (existingRanks.has(i)) {
+      uni = fullData.find(u => u.rank === i);
+    } else {
+      const country = countries[Math.floor(Math.random() * countries.length)];
+      const focus = focuses[Math.floor(Math.random() * focuses.length)];
+      const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+      const name = `Global ${country} ${suffix} #${i}`;
+      uni = {
+        rank: i,
+        name: name,
+        country: country,
+        score: (100 - (i * 0.08)).toFixed(1),
+        year: 2025,
+        tuition: Math.floor(Math.random() * 40000) + 5000,
+        acceptance: (Math.random() * 40 + 5).toFixed(1) + "%",
+        students: Math.floor(Math.random() * 30000) + 5000,
+        deadline: `2026-0${Math.floor(Math.random()*5)+1}-01`,
+        toefl: Math.floor(Math.random() * 20) + 80,
+        focus: focus
+      };
+      fullData.push(uni);
+    }
     
-    const country = countries[Math.floor(Math.random() * countries.length)];
-    const focus = focuses[Math.floor(Math.random() * focuses.length)];
-    const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-    const name = `Regional ${country} ${suffix} #${i}`;
-    
-    fullData.push({
-      rank: i,
-      name: name,
-      country: country,
-      score: (100 - (i * 0.08)).toFixed(1),
-      year: 2025,
-      tuition: Math.floor(Math.random() * 40000) + 5000,
-      acceptance: (Math.random() * 40 + 5).toFixed(1) + "%",
-      students: Math.floor(Math.random() * 30000) + 5000,
-      deadline: `2026-0${Math.floor(Math.random()*5)+1}-01`,
-      toefl: Math.floor(Math.random() * 20) + 80,
-      focus: focus
-    });
+    // Add Reviews
+    const r1 = reviewsPool[Math.floor(Math.random() * reviewsPool.length)];
+    let r2 = reviewsPool[Math.floor(Math.random() * reviewsPool.length)];
+    while(r1 === r2) r2 = reviewsPool[Math.floor(Math.random() * reviewsPool.length)];
+    uni.reviews = [r1, r2];
+    uni.reputation = (Math.random() * 20 + 80).toFixed(1);
   }
   
   return fullData.sort((a,b) => a.rank - b.rank);
@@ -223,6 +277,7 @@ function handleRoute() {
   if (!hash || hash === "" || hash === "home") {
     $("#homeView").classList.add("active");
     $(`.nav-item[data-view="home"]`)?.classList.add("active");
+    updateMeta(translations[state.lang].app_title, translations[state.lang].app_desc);
     renderHome();
   } else if (hash.startsWith("uni/")) {
     const uniName = decodeURIComponent(hash.split("/")[1]);
@@ -255,6 +310,7 @@ function renderHome() {
 
   items.forEach(it => {
     const tr = document.createElement("tr");
+    const isCompared = state.compareList.includes(it.name);
     tr.innerHTML = `
       <td><span class="rank">#${it.rank}</span></td>
       <td><a href="#uni/${encodeURIComponent(it.name)}" style="font-weight:700; color:var(--primary);">${it.name}</a></td>
@@ -262,7 +318,7 @@ function renderHome() {
       <td>
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <b>${it.score}</b>
-          <button class="icon-btn" onclick="toggleCompare('${it.name.replace(/'/g, "\\'")}')">${state.compareList.includes(it.name) ? '✅' : '➕'}</button>
+          <button class="icon-btn" onclick="toggleCompare('${it.name.replace(/'/g, "\\'")}')">${isCompared ? '✅' : '➕'}</button>
         </div>
       </td>
     `;
@@ -279,7 +335,12 @@ function renderHome() {
 
 function renderDetail(name) {
   const uni = state.raw.find(u => u.name === name);
-  if (!uni) return;
+  if (!uni) { location.hash = ""; return; }
+
+  const dict = translations[state.lang];
+  updateMeta(`${uni.name} - ${dict.app_title}`, `Detailed profile of ${uni.name} in ${uni.country}.`);
+
+  $("#uniPageTitle").textContent = uni.name;
   $("#uniPageName").textContent = uni.name;
   $("#uniPageRank").textContent = `#${uni.rank}`;
   $("#uniPageCountry").textContent = uni.country;
@@ -287,6 +348,21 @@ function renderDetail(name) {
   $("#uniPageAcceptance").textContent = uni.acceptance || "-";
   $("#uniPageStudents").textContent = (uni.students || 0).toLocaleString();
   $("#uniPageToefl").textContent = uni.toefl || "80+";
+  
+  // Set Description
+  $("#uniPageDesc").textContent = `${uni.name} is a leading global institution located in ${uni.country}. It boasts a ${uni.reputation}% academic reputation score and is highly ranked for its excellence in ${uni.focus === 'sci' ? 'Science & Technology' : uni.focus === 'bus' ? 'Business' : 'Humanities'}.`;
+
+  // Render Reviews
+  const reviewsContainer = $("#uniPageReviews");
+  reviewsContainer.innerHTML = (uni.reviews || []).map(r => `
+    <div class="list-item">
+      <div>
+        <p style="margin:0; font-size:14px;">"${r[state.lang]}"</p>
+        <div style="margin-top:5px; color:var(--primary); font-size:12px;">★ ★ ★ ★ ★</div>
+      </div>
+    </div>
+  `).join("");
+
   renderChart(uni.name);
 }
 
@@ -302,8 +378,11 @@ function renderInsights() {
 
 function renderArticle(id) {
   const art = ARTICLES.find(a => a.id === id);
-  if (!art) return;
+  if (!art) { location.hash = "insights"; return; }
+  
+  updateMeta(art.title, art.excerpt);
   $("#articleTitle").textContent = art.title;
+  $("#articleMeta").textContent = `${art.author} | ${art.date}`;
   $("#articleContent").innerHTML = art.content;
 }
 
@@ -321,9 +400,15 @@ function renderDashboard() {
   const deadList = $("#dashDeadlineList");
   deadList.innerHTML = state.savedDeadlines.length === 0 ? `<p>${dict.msg_empty}</p>` : "";
   state.savedDeadlines.forEach(item => {
+    const dday = calculateDDay(item.date);
     const div = document.createElement("div");
     div.className = "list-item";
-    div.innerHTML = `<div><strong>${item.name}</strong><br><small>${item.date}</small></div> <button class="btn sm" onclick="removeDeadline('${item.name.replace(/'/g, "\\'")}')">Remove</button>`;
+    div.innerHTML = `
+      <div>
+        <strong>${item.name}</strong><br>
+        <small>${item.date} (${dict.dday_prefix} D-${dday})</small>
+      </div> 
+      <button class="btn sm" onclick="removeDeadline('${item.name.replace(/'/g, "\\'")}')">Remove</button>`;
     deadList.appendChild(div);
   });
 }
@@ -350,8 +435,18 @@ function applyFilters() {
 
 function toggleCompare(name) {
   const idx = state.compareList.indexOf(name);
-  if (idx > -1) state.compareList.splice(idx, 1);
-  else if (state.compareList.length < 4) state.compareList.push(name);
+  const dict = translations[state.lang];
+  if (idx > -1) {
+    state.compareList.splice(idx, 1);
+    alert(dict.msg_removed_compare);
+  } else {
+    if (state.compareList.length < 4) {
+      state.compareList.push(name);
+      alert(dict.msg_added_compare);
+    } else {
+      alert(dict.msg_compare_limit);
+    }
+  }
   saveState();
   renderHome();
   if (window.location.hash === "#dashboard") renderDashboard();
@@ -373,6 +468,18 @@ function saveDeadline() {
   }
 }
 
+function shareContent() {
+  const dict = translations[state.lang];
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    alert(dict.msg_shared);
+  });
+}
+
+function calculateDDay(dateStr) {
+  const diff = new Date(dateStr) - new Date();
+  return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+}
+
 function renderChart(name) {
   const canvas = $("#rankingChart");
   if (!canvas) return;
@@ -385,7 +492,7 @@ function renderChart(name) {
       labels: ['2021', '2022', '2023', '2024', '2025'],
       datasets: [{ label: 'Rank', data: history, borderColor: '#00dcff', fill: false }]
     },
-    options: { scales: { y: { reverse: true, min: 1 } } }
+    options: { scales: { y: { reverse: true, min: 1 } }, responsive: true, maintainAspectRatio: false }
   });
 }
 
@@ -404,20 +511,21 @@ function renderPodium() {
 function openCompareModal() {
   const modal = $("#compareModal");
   const table = $("#compareTable");
+  const dict = translations[state.lang];
   modal.classList.add("active");
   $("#modalOverlay").classList.add("active");
   const unis = state.compareList.map(name => state.raw.find(u => u.name === name));
-  let html = `<tr><th>Metric</th>${unis.map(u => `<th>${u.name.split('(')[0]}</th>`).join('')}</tr>`;
-  const rows = [{ l: "Rank", k: "rank" }, { l: "Tuition", k: "tuition" }, { l: "Acceptance", k: "acceptance" }];
+  let html = `<tr><th>${dict.th_rank}</th>${unis.map(u => `<th>${u.name.split('(')[0]}</th>`).join('')}</tr>`;
+  const rows = [
+    { l: dict.th_rank, k: "rank" }, 
+    { l: dict.label_tuition, k: "tuition" }, 
+    { l: dict.reputation_score, k: "reputation" }
+  ];
   rows.forEach(r => { html += `<tr><td>${r.l}</td>${unis.map(u => `<td>${u[r.k]}</td>`).join('')}</tr>`; });
   table.innerHTML = html;
 }
 
-function shareContent() {
-  navigator.clipboard.writeText(window.location.href).then(() => alert(translations[state.lang].msg_shared));
-}
-
-// Event Listeners
+// Event Listeners & Init
 window.addEventListener("hashchange", handleRoute);
 window.addEventListener("load", () => {
   initFilters();
@@ -427,13 +535,21 @@ window.addEventListener("load", () => {
   $("#langSelect").value = state.lang;
 });
 
+$("#langSelect").addEventListener("change", (e) => {
+  state.lang = e.target.value;
+  localStorage.setItem("lang", state.lang);
+  setLanguage(state.lang);
+  buildCountries(); // Rebuild country list with "All" translation
+  handleRoute();
+});
+
 function initFilters() {
   const years = $("#year");
   years.innerHTML = `<option value="2025">2025</option>`;
   const sort = $("#sort");
   sort.innerHTML = `
-    <option value="rank_asc" data-i18n="sort_rank_asc">순위 높은 순</option>
-    <option value="name_asc" data-i18n="sort_name_asc">이름 순</option>
+    <option value="rank_asc" data-i18n="sort_rank_asc">Rank</option>
+    <option value="name_asc" data-i18n="sort_name_asc">Name</option>
   `;
   const size = $("#pageSize");
   size.innerHTML = `
@@ -457,7 +573,8 @@ function setLanguage(lang) {
 function buildCountries() {
   const countries = [...new Set(state.raw.map(u => u.country))].sort();
   const sel = $("#country");
-  sel.innerHTML = `<option value="__ALL__">${translations[state.lang].opt_all}</option>`;
+  const dict = translations[state.lang];
+  sel.innerHTML = `<option value="__ALL__">${dict.opt_all}</option>`;
   countries.forEach(c => {
     const opt = document.createElement("option");
     opt.value = c; opt.textContent = c;
@@ -489,9 +606,27 @@ document.querySelectorAll(".close-modal-btn").forEach(b => b.addEventListener("c
 $("#btnRunMatch").addEventListener("click", () => {
   const interest = $("#matchInterest").value;
   const filtered = state.raw.filter(u => u.focus === interest).slice(0, 10);
-  $("#matchList").innerHTML = filtered.map(u => `<div class="list-item" onclick="location.hash='uni/${encodeURIComponent(u.name)}'"><span>${u.name}</span> <b>#${u.rank}</b></div>`).join("");
+  const dict = translations[state.lang];
+  
+  $("#matchList").innerHTML = `<h3>${dict.match_result_title}</h3>` + filtered.map(u => `
+    <div class="list-item" onclick="location.hash='uni/${encodeURIComponent(u.name)}'" style="cursor:pointer;">
+      <span>${u.name}</span> <b>#${u.rank}</b>
+    </div>
+  `).join("");
+  
+  const shareDiv = document.createElement("div");
+  shareDiv.className = "share-card-mock";
+  shareDiv.innerHTML = `<h4>${dict.share_text}</h4><button class="btn sm primary" onclick="shareContent()">Share Link</button>`;
+  $("#matchList").appendChild(shareDiv);
+  
   $("#matchResults").style.display = "block";
 });
+
+function updateMeta(title, desc) {
+  document.title = title;
+  const metaDesc = $("#dynamicDesc");
+  if (metaDesc) metaDesc.setAttribute("content", desc);
+}
 
 const themeToggle = $("#themeToggle");
 const themeIcon = $("#themeIcon");
